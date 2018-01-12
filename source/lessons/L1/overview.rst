@@ -1,7 +1,7 @@
 Lesson overview
 ===============
 
-In this week's lesson we will introduce you a spatial data model (geometric objects) and some basics of how spatial data
+In this lesson we will introduce you a spatial data model (geometric objects) and some basics of how spatial data
 can be manipulated in pure Python.
 
 1. :doc:`Geometric Objects - Spatial Data Model <Geometric-Objects>`
@@ -18,7 +18,7 @@ can be manipulated in pure Python.
 Learning goals
 --------------
 
-After this week you should:
+After this lesson you should:
 
   - have an idea of what kind of tools are available for doing GIS in Python
   - know how to install Python packages using conda

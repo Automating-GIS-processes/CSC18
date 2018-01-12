@@ -9,7 +9,7 @@ During the course you will learn how to do different GIS-related tasks in Python
 Each lesson is a tutorial with specific topic(s) + Exercises where the aim is to learn
 how to solve common GIS-related problems and tasks using Python tools.
 The course is tailored to fit into three days based on materials from `Automating GIS processes <http://autogis.github.io>`__ -course
-that is part of a GIS-track of the Master's Program at the Department of Geosciences and Geography, University of Helsinki.
+that is part of a GIS-track of the `Master's Program <https://www.helsinki.fi/en/programmes/master/geography>`__ at the Department of Geosciences and Geography, University of Helsinki.
 
 Lecturer of the course is `Henrikki Tenkanen <https://www.researchgate.net/profile/Henrikki_Tenkanen>`__ who is a geo-data scientist and postdoctoral
 researcher at the `Digital Geography Lab <http://helsinki.fi/digital-geography>`__, University of Helsinki.

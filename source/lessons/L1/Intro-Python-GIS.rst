@@ -1,25 +1,24 @@
 Introduction to Python GIS
 ==========================
 
-General overview of the latter part of the course
+General overview of the course
 -------------------------------------------------
 
-Now as we know `the basics of Python programming <https://geo-python.github.io>`_ we are ready to
-apply those skills to different GIS related tasks. During the next
-seven weeks we will learn how to deal with spatial data and analyze it
+During the next three intensive days you will learn how to deal with spatial data and analyze it
 using "pure" Python.
 
 Learning objectives
 -------------------
 
-At the end of the course you should be able to:
+At the end of the course you should have a basic idea how to conduct following GIS tasks in Python:
 
 -  Read / write spatial data from/to different file formats
 -  Deal with different projections
--  Do different geometric operations and geocoding
+-  Conduct different geometric operations and spatial queries
+-  Convert addresses to points (+ vice versa) i.e. do geocoding
 -  Reclassify your data based on different criteria
--  Do spatial queries
--  Do simple spatial analyses
+-  Know how to fetch data from OpenStreetMap easily with Python
+-  Know the basics of raster processing in Python
 -  Visualize data and create (interactive) maps, such as following:
 
 .. raw:: html
@@ -93,9 +92,7 @@ reasons for doing GIS using Python without any additional software:
 What sort of tools are available for doing GIS in pure Python?
 --------------------------------------------------------------
 
-We have already used few Python modules for conducting different tasks,
-such as **numpy** for doing mathematical calculations or **matplotlib**
-for visualizing our data. From now on, we will familiarize ourselves
+During the course we will familiarize ourselves
 with punch of other Python modules that are useful when doing data
 analysis or different GIS tasks.
 
@@ -106,11 +103,11 @@ yourself with many different modules (and their documentation), whereas
 e.g. in ArcGIS everything is packaged under a same module called
 `arcpy <http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy/what-is-arcpy-.htm>`__.
 
-Below we have listed most of the crucial modules (and links to their
+Below is a list of useful libraries (and links to their
 docs) that helps you get going when doing data analysis or GIS in
 Python. If you are interested or when you start using these modules in
-your own work, you should read the documentation from the web pages of
-the module that you need:
+your own work, it is highly recommended to read the documentation from the web pages of
+the module that you use:
 
 -  **Data analysis & visualization:**
 
@@ -146,6 +143,7 @@ the module that you need:
    -  `Pyproj <https://pypi.python.org/pypi/pyproj?>`__ --> Performs
       cartographic transformations and geodetic computations (based on
       `PROJ.4 <http://trac.osgeo.org/proj>`__).
+   -  `PyCRS <https://github.com/karimbahgat/PyCRS>`__ --> Working eaily with different CRS specifications (EPSG, ESRI, Proj4)
    -  `Pysal <https://pysal.readthedocs.org/en/latest/>`__ --> Library
       of spatial analysis functions written in Python.
    -  `Geopy <http://geopy.readthedocs.io/en/latest/>`__ --> Geocoding
@@ -168,6 +166,7 @@ the module that you need:
       Python for quick spatial lookups.
    -  `Rasterio <https://github.com/mapbox/rasterio>`__ --> Clean and
       fast and geospatial raster I/O for Python.
+   -  `Rasterstats <http://pythonhosted.org/rasterstats/>`__ --> A module for summarizing geospatial raster datasets based on vector geometries (e.g. conduct zonal statistics).
    -  `RSGISLib <http://www.rsgislib.org/index.html#python-documentation>`__
       --> Remote Sensing and GIS Software Library for Python.
 
