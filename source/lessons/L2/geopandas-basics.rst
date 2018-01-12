@@ -310,9 +310,6 @@ Python programming. Similar approach can be used to for example to read
 coordinates from a text file (e.g. points) and create Shapefiles from
 those automatically.
 
-**Task:** check the output Shapefile in QGIS and make sure that the
-attribute table seems correct.
-
 Practical example: Save multiple Shapefiles
 -------------------------------------------
 

@@ -30,6 +30,10 @@ The provided exercises will focus on developing basic programming skills using t
     After finishing this course, you can always come back later to check the materials on this site, they will be available for you always.
     Materials are written in a way that you can follow them step by step exactly as they are written (in respect of ).
 
+.. admonition:: More materials available!
+
+   If you are eager to learn more, there are more materials available from `Automating GIS processes <http://autogis.github.io>`__ -course site.
+
 Program
 -------
 
@@ -47,12 +51,11 @@ The materials are divided into following themes:
 +----------------+---------------------------------+
 | **Lesson 2**   | Working with GeoDataFrames;     |
 |  Mon 13-16     | Managing projections;           |
-|                | Table join;                     |
 |                |                                 |
 +----------------+---------------------------------+
-| **Lesson 3**   | Geocoding and making spatial    |
-|  Tue 9-12      | queries                         |
-|                |                                 |
+| **Lesson 3**   | Geocoding;                      |
+|  Tue 9-12      | Spatial queries;                |
+|                | Table join                      |
 |                |                                 |
 +----------------+---------------------------------+
 |   *Tue 12-13*  |          *Lunch*                |
