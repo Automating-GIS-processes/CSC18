@@ -25,15 +25,6 @@ Course format
 The majority of this course will be spent in front of a computer learning to program in the Python language and working on exercises.
 The provided exercises will focus on developing basic programming skills using the Python language and applying those skills to various GIS related problems.
 
-.. admonition:: Materials are available for you online, always!
-
-    After finishing this course, you can always come back later to check the materials on this site, they will be available for you always.
-    Materials are written in a way that you can follow them step by step exactly as they are written (in respect of ).
-
-.. admonition:: More materials available!
-
-   If you are eager to learn more, there are more materials available from `Automating GIS processes <http://autogis.github.io>`__ -course site.
-
 Program
 -------
 
@@ -74,6 +65,22 @@ The materials are divided into following themes:
 |  Wed 13-16     |                                 |
 +----------------+---------------------------------+
 
+.. admonition:: Materials are available for you online, always!
+
+    After finishing this course, you can always come back later to check the materials on this site, they will be available for you always.
+    Materials are written in a way that you can follow them step by step exactly as they are written (requires only modifying the filepaths).
+
+.. admonition:: More materials available!
+
+   If you are eager to learn more, there are more materials available from `Automating GIS processes <http://autogis.github.io>`__ -course site, including:
+
+     - `Python programming with QGIS 3.0 (processing -module) <https://automating-gis-processes.github.io/2017/lessons/L6/01-overview.html>`__
+     - `Python programming with ArcGIS (arcpy -module) <https://automating-gis-processes.github.io/2016/Lesson6-overview.html>`__
+     - `Network analysis in Python (with OSMnx + networkx -modules) <https://automating-gis-processes.github.io/2017/lessons/L7/network-analysis.html>`__
+     - `Simplifying geometries in Python <https://automating-gis-processes.github.io/2017/lessons/L4/geometric-operations.html#simplifying-geometries>`__
+     - `Aggregating (dissolving) geometries <https://automating-gis-processes.github.io/2017/lessons/L4/geometric-operations.html#aggregating-data>`__
+     - `Interactive maps on Leaflet (folium module) <https://automating-gis-processes.github.io/2017/lessons/L5/interactive-map-folium.html>`__
+     - `Raster processing with GDAL + interacting with GDAL from command line <https://automating-gis-processes.github.io/2016/Lesson7-overview.html>`__
 
 Contents
 --------
