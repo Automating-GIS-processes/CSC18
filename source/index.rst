@@ -1,5 +1,5 @@
 
-.. figure:: img/IntroPythonGIS_banner.png
+.. figure:: img/Intro_PythonGIS_banner.png
 
 Welcome to Introduction to Python GIS  -course 2018!
 ====================================================
@@ -11,7 +11,10 @@ how to solve common GIS-related problems and tasks using Python tools.
 The course is tailored to fit into three days based on materials from `Automating GIS processes <http://autogis.github.io>`__ -course
 that is part of a GIS-track of the Master's Program at the Department of Geosciences and Geography, University of Helsinki.
 
-In the lessons we use only publicly available data which can be used and downloaded by anyone anywhere. In this course,
+Lecturer of the course is `Henrikki Tenkanen <https://www.researchgate.net/profile/Henrikki_Tenkanen>`__ who is a geo-data scientist and postdoctoral
+researcher at the `Digital Geography Lab <http://helsinki.fi/digital-geography>`__, University of Helsinki.
+
+In the lessons, we use only publicly available data which can be used and downloaded by anyone anywhere. In this course,
 we assume that you know the basics of Python programming. If Python is not familiar to you, we recommend to start with a
 course from us focusing on the basics of Python
 from `geo-python.github.io <https://geo-python.github.io>`_.
@@ -35,7 +38,7 @@ The materials are divided into following themes:
 +----------------+---------------------------------+
 | Time           | Theme                           |
 +================+=================================+
-| **Lesson 1**   | GIS in Python;                  |
+| **Lesson 1**   | GIS with Python;                |
 |   Mon 9-12     | Spatial data model;             |
 |                | Geometric Objects; Shapely      |
 |                |                                 |
@@ -55,7 +58,7 @@ The materials are divided into following themes:
 |   *Tue 12-13*  |          *Lunch*                |
 +----------------+---------------------------------+
 | **Lesson 4**   | Geometric operations;           |
-|  Tue 13-16     | Reclassifying data with Pysal   |
+|  Tue 13-16     | Working with OpenStreetMap data |
 |                |                                 |
 +----------------+---------------------------------+
 | **Lesson 5**   | Visualization, making static    |
@@ -64,10 +67,10 @@ The materials are divided into following themes:
 +----------------+---------------------------------+
 |   *Wed 12-13*  |          *Lunch*                |
 +----------------+---------------------------------+
-| **Lesson 6**   | Using Python programming in     |
-|  Wed 13-16     | Quantum GIS                     |
+| **Lesson 6**   | Raster processing in Python     |
+|  Wed 13-16     |                                 |
 +----------------+---------------------------------+
-|
+
 
 Contents
 --------
@@ -123,7 +126,7 @@ Contents
 
    lessons/L4/overview
    lessons/L4/lecture
-   lessons/L4/reclassify
+   lessons/L7/retrieve-osm-data
    lessons/L4/geometric-operations
    lessons/L4/ex-4
    lessons/L4/exercise-4-hints
@@ -144,10 +147,10 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Lesson 7
+   :caption: Lesson 6
 
    lessons/L7/overview
    lessons/L7/lecture
-   lessons/L7/retrieve-osm-data
+
    lessons/L7/ex-7
    lessons/L7/exercise-7-hints

@@ -90,8 +90,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Geo-Python - AutoGIS'
-copyright = '2017, Henrikki Tenkanen'
+project = 'Intro to Python GIS'
+copyright = '2018, Henrikki Tenkanen'
 author = 'Henrikki Tenkanen'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -99,7 +99,7 @@ author = 'Henrikki Tenkanen'
 # built documents.
 #
 # The short X.Y version.
-version = '2017'
+version = '2018'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
@@ -181,7 +181,7 @@ html_context = {
     # Set the following variables to generate the resulting github URL for each page.
     # Format Template: https://{{ github_host|default("github.com") }}/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ suffix }}
     'github_user': 'Automating-GIS-processes',
-    'github_repo': '2017',
+    'github_repo': 'CSC18',
     'github_version': 'master/source/'
 }
 
@@ -200,7 +200,7 @@ html_context = {
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #
-html_logo = 'img/logo_hy_geo_135.png'
+html_logo = 'img/logo_small.png'
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -291,7 +291,7 @@ html_last_updated_fmt = ""
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Geo-Python'
+htmlhelp_basename = 'Python GIS'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -317,8 +317,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Geo-Python.tex', 'Geo-Python Documentation',
-     'Henrikki Tenkanen \\& David Whipp', 'manual'),
+    (master_doc, 'Python GIS.tex', 'Python GIS Documentation',
+     'Henrikki Tenkanen', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -359,7 +359,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'geopython', 'GeoPython Documentation',
+    (master_doc, 'pythonGIS', 'Python GIS Documentation',
      [author], 1)
 ]
 
@@ -374,8 +374,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'GeoPython', 'GeoPython Documentation',
-     author, 'GeoPython', 'One line description of project.',
+    (master_doc, 'Python GIS', 'Python GIS Documentation',
+     author, 'Python GIS', 'One line description of project.',
      'Miscellaneous'),
 ]
 

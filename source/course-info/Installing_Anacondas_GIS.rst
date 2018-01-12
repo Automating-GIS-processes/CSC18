@@ -74,12 +74,21 @@ Install GIS related packages with conda (and pip) by running in command prompt f
     # Install Folium (v 0.5.0) --> bundled with altair, vega
     conda install -c conda-forge folium
 
+    # Install Rasterio (v. 0.36) --> bundled with attrs
+    conda install -c conda-forge rasterio
+
+    # Install Rasterstats (v. 0.12.0) --> bundled with simplejson
+    conda install -c conda-forge rasterstats
+
     # Install Dash using Pip
     pip install dash==0.19.0  # The core dash backend
     pip install dash-renderer==0.11.1  # The dash front-end
     pip install dash-html-components==0.8.0  # HTML components
     pip install dash-core-components==0.14.0  # Supercharged components
     pip install plotly --upgrade  # Plotly graphing library
+
+    # Install PyCRS (v. 1.3) using Pip (a fixed version from mullenkamp)
+    pip install https://github.com/mullenkamp/PyCRS/archive/master.zip
 
 Test that everything works
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,7 +112,8 @@ You can test that the installations have worked by running following commands in
      import osmnx
      import folium
      import dash
-
+     import rasterio
+     import rasterstats
 
 If you don't receive any errors, everything should be working!
 

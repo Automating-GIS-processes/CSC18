@@ -3,6 +3,15 @@ Planning
 
 Last year there was only Pandas as Geopandas stuff. Now we have more time to focus on Geopandas.
 
+**Things to cover in Lesson 1:**
+
+- Introduction to course - Quick name / background round with the participants
+- Intro to using Python with GIS
+- Spatial Data model and basic attributes of geometric objects
+  - Point
+  - LineString
+  - Polygon
+
 **Things to cover in Lesson 2:**
 
 - Reading / writing Shapefile
@@ -10,12 +19,11 @@ Last year there was only Pandas as Geopandas stuff. Now we have more time to foc
 - Working with geometries in GeoDataFrame (calculating areas etc.)
 - Iterating over rows and creating a LineString from centroid of Polygons to specific destination point (to demonstrate the usefulness of apply function)
 - Projections --> Reprojecting data
-    - We could create a function that returns a GeoDataFrame with identical crs for each input dataset
 
 **Things to cover in Lesson 3:**
 
 - Geocoding, using Nominatim (http://nominatim.openstreetmap.org/) --> provider='nominatim' --> does not require API key
-- Recap of a table join (with geocoding)
+- Table join (with geocoding)
 - Point in Polygon / Intersect
 - Spatial Join
 - Nearest point (scipy.spatial)
@@ -24,7 +32,6 @@ Last year there was only Pandas as Geopandas stuff. Now we have more time to foc
 
 - Overlay analysis
 - Aggregating data
-- Simplifying geometries
 - Data reclassification (own made + pysal)
 
 **Things to cover in Lesson 5:**
