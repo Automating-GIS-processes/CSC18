@@ -93,7 +93,6 @@ Contents
 
    lessons/L1/Intro-Python-GIS
    lessons/L1/overview
-   lessons/L1/lecture
    lessons/L1/Geometric-Objects
    lessons/L1/ex-1
    lessons/L1/exercise-1-hints
@@ -103,7 +102,6 @@ Contents
    :caption: Lesson 2
 
    lessons/L2/overview
-   lessons/L2/lecture
    lessons/L2/geopandas-basics
    lessons/L2/projections
    lessons/L2/using-functions
@@ -115,7 +113,6 @@ Contents
    :caption: Lesson 3
 
    lessons/L3/overview
-   lessons/L3/lecture
    lessons/L3/geocoding
    lessons/L3/point-in-polygon
    lessons/L3/spatial-join
@@ -128,7 +125,6 @@ Contents
    :caption: Lesson 4
 
    lessons/L4/overview
-   lessons/L4/lecture
    lessons/L7/retrieve-osm-data
    lessons/L4/geometric-operations
    lessons/L4/ex-4
@@ -139,7 +135,6 @@ Contents
    :caption: Lesson 5
 
    lessons/L5/overview
-   lessons/L5/lecture
    lessons/L5/static-maps
    lessons/L5/interactive-map-bokeh
    lessons/L5/advanced-bokeh
@@ -153,7 +148,5 @@ Contents
    :caption: Lesson 6
 
    lessons/L7/overview
-   lessons/L7/lecture
-
    lessons/L7/ex-7
    lessons/L7/exercise-7-hints

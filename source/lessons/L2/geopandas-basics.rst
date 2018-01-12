@@ -69,10 +69,7 @@ some special features and functions that are useful in GIS.
 
     data.head()
 
-- Let's also take a look how our data looks like on a map. If you just
-want to explore your data on a map, you can use ``.plot()`` -function
-in geopandas that creates a simple map out of the data (uses
-matplotlib as a backend):
+- Let's also take a look how our data looks like on a map. If you just want to explore your data on a map, you can use ``.plot()`` -function in geopandas that creates a simple map out of the data (uses matplotlib as a backend):
 
 .. ipython:: python
 

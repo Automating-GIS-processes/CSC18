@@ -1,7 +1,7 @@
 Overview
 ========
 
-During this week we will learn a few really useful and commonly used GIS functionalities using Geopandas, namely:
+During this lesson we will learn a few really useful and commonly used GIS functionalities using Geopandas, namely:
 
 1. :doc:`Geocoding addresses to Points (and vice versa) <geocoding>`
 2. :doc:`Conducting Point in Polygon queries <point-in-polygon>`
@@ -11,7 +11,7 @@ During this week we will learn a few really useful and commonly used GIS functio
 Learning goals
 --------------
 
-After this weeks' lesson you should be able to:
+After this lesson you should be able to:
 
  - Do geocoding, i.e. converting addresses into Points (and vice versa)
  - Conduct a Point in Polygon queries

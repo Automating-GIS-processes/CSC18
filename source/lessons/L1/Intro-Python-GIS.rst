@@ -89,12 +89,13 @@ reasons for doing GIS using Python without any additional software:
    `GeoDjango <https://docs.djangoproject.com/en/1.8/ref/contrib/gis/>`__
    with `PostGIS <http://postgis.net/>`__ as a back-end)
 
-What sort of tools are available for doing GIS in pure Python?
---------------------------------------------------------------
+What tools are available for doing GIS in pure Python?
+------------------------------------------------------
+
+Short answer: Many!
 
 During the course we will familiarize ourselves
-with punch of other Python modules that are useful when doing data
-analysis or different GIS tasks.
+with a punch of Python modules that are useful when doing data analysis and different GIS tasks.
 
 One drawback when compared to using a specific GIS-software such as
 `ArcGIS <http://arcgis.com/>`_, is that GIS tools are spread under different Python modules and

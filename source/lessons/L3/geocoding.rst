@@ -134,6 +134,13 @@ However, the ``id`` column is not there. Thus, we need to join the
 information from ``data`` into our new GeoDataFrame ``geo``, thus making
 a **Table Join**.
 
+.. hint::
+
+    Nominatim works relatively nicely if you have well defined and well-known addresses such as the ones that we used in this tutorial.
+    However, in some cases, you might not have such well-defined addresses, and you might have e.g. only the name of a museum available.
+    In such cases, Nominatim might not provide such good results, and in such cases you might want to use e.g. `Google Geocoding API (V3) <https://developers.google.com/maps/documentation/geocoding/>`__.
+    Take a look from last year, `where we show how to use Google Geocoding API <https://automating-gis-processes.github.io/2016/Lesson3-geocoding.html#geocoding-in-geopandas>`__ in a similar manner as we used Nominatim here.
+
 Table join
 ----------
 
@@ -175,11 +182,16 @@ all original columns plus a new column for ``geometry``.
     join.to_file(outfp)
 
 That's it. Now we have successfully geocoded those addresses into Points
-and made a Shapefile out of them. Easy isn't it!
+and made a Shapefile out of them. Easy isn't it! Let's still take a look how our data looks like.
+
+.. ipython:: python
+
+    join.plot()
+    @savefig address_points.png width=5in
+    plt.tight_layout();
 
 .. hint::
 
-    Nominatim works relatively nicely if you have well defined and well-known addresses such as the ones that we used in this tutorial.
-    However, in some cases, you might not have such well-defined addresses, and you might have e.g. only the name of a museum available.
-    In such cases, Nominatim might not provide such good results, and in such cases you might want to use e.g. `Google Geocoding API (V3) <https://developers.google.com/maps/documentation/geocoding/>`__.
-    Take a look from last year, `where we show how to use Google Geocoding API <https://automating-gis-processes.github.io/2016/Lesson3-geocoding.html#geocoding-in-geopandas>`__ in a similar manner as we used Nominatim here.
+   Quite often you want to join two GIS-layers together based on **a common field** that is found on both layers.
+   Conducting such table join is really easy with ``merge()`` function. You can take a look of an example of conducting
+   such `from here <https://geo-python.github.io/2017/lessons/L6/exercise-6-hints.html#joining-data-from-one-dataframe-to-another>`__.

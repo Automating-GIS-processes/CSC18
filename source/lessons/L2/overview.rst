@@ -1,7 +1,7 @@
 Lesson 2 Overview
 =================
 
-In this week, we will learn how to read and write spatial data, and how to deal with projections in Python using `Geopandas <http://geopandas.org/>`_ -module
+In this lesson, we will learn how to read and write spatial data, and how to deal with projections in Python using `Geopandas <http://geopandas.org/>`_ -module
 and some useful data management functionalities.
 
 1. :doc:`Introduction to Geopandas <geopandas-basics>`
@@ -12,7 +12,7 @@ and some useful data management functionalities.
 Learning goals
 --------------
 
-After this week, you should know how to:
+After this lesson, you should know how to:
 
  - Read and write data from/to Shapefile
  - Create geometries into GeoDataFrame
