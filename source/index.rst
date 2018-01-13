@@ -84,7 +84,6 @@ The materials are divided into following themes:
 
 Contents
 --------
-*Lesson content, readings and due dates are subject to change*
 
 .. toctree::
    :maxdepth: 2
@@ -122,9 +121,7 @@ Contents
 
    lessons/L3/overview
    lessons/L3/geocoding
-   lessons/L3/point-in-polygon
-   lessons/L3/spatial-join
-   lessons/L3/nearest-neighbour
+   lessons/L3/retrieve-osm-data
    lessons/L3/ex-3
    lessons/L3/exercise-3-hints
 
@@ -133,8 +130,10 @@ Contents
    :caption: Lesson 4
 
    lessons/L4/overview
-   lessons/L7/retrieve-osm-data
-   lessons/L4/geometric-operations
+   lessons/L4/point-in-polygon
+   lessons/L4/spatial-join
+   lessons/L4/geometric-operation
+   lessons/L4/nearest-neighbour
    lessons/L4/ex-4
    lessons/L4/exercise-4-hints
 
