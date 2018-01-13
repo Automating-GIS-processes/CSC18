@@ -154,6 +154,3 @@ Contents
    :maxdepth: 2
    :caption: Lesson 6
 
-   lessons/L7/overview
-   lessons/L7/ex-7
-   lessons/L7/exercise-7-hints
