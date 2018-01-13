@@ -45,14 +45,14 @@ The materials are divided into following themes:
 |                |                                 |
 +----------------+---------------------------------+
 | **Lesson 3**   | Geocoding;                      |
-|  Tue 9-12      | Spatial queries;                |
-|                | Table join                      |
+|  Tue 9-12      | Table join;                     |
+|                | Working with OpenStreetMap data |
 |                |                                 |
 +----------------+---------------------------------+
 |   *Tue 12-13*  |          *Lunch*                |
 +----------------+---------------------------------+
 | **Lesson 4**   | Geometric operations;           |
-|  Tue 13-16     | Working with OpenStreetMap data |
+|  Tue 13-16     | Spatial queries;                |
 |                |                                 |
 +----------------+---------------------------------+
 | **Lesson 5**   | Visualization, making static    |
@@ -91,6 +91,7 @@ Contents
    :caption: Course information
 
    course-info/course-info
+   course-info/who-are-you
    course-info/Installing_Anacondas_GIS
    course-info/License-terms
 

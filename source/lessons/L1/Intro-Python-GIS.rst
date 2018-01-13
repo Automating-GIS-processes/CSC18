@@ -119,13 +119,17 @@ the module that you use:
    -  `Scipy <http://www.scipy.org/about.html>`__ --> A collection of
       numerical algorithms and domain-specific toolboxes, including
       signal processing, optimization and statistics
+   - `Statsmodels <http://www.statsmodels.org/stable/index.html>`__ --> Statistical models for Python
+   - `Scikit-learn <http://scikit-learn.org/stable/>`__ --> Machine learning for Python (classification, regression, clustering, etc.)
    -  `Matplotlib <http://matplotlib.org/>`__ --> Basic plotting library
       for Python
+   - `Seaborn <https://seaborn.pydata.org/>`__ --> Statistical data visualization
    -  `Bokeh <http://bokeh.pydata.org/en/latest/>`__ --> Interactive
       visualizations for the web (also maps)
    -  `Plotly <https://plot.ly/python/>`__ --> Interactive
       visualizations (also maps) for the web (commercial - free for
       educational purposes)
+   - `Dash <https://plot.ly/products/dash/>`__ --> Building analytical web applications with Python (no Javascript required)
 
 -  **GIS:**
 
@@ -152,7 +156,7 @@ the module that you use:
    -  `GeoViews <http://geo.holoviews.org/index.html>`__ --> Interactive
       Maps for the web.
    -  `Geoplot <https://github.com/ResidentMario/geoplot>`__ --> High-level geospatial data visualization library for Python.
-   - `Dash <https://plot.ly/products/dash/>`__ --> Dash is a Python framework for building analytical web applications.
+   - `GeoNotebook <https://github.com/OpenGeoscience/geonotebook>`__ --> Desktop GIS-like environment for visualizing and interacting with spatial data using Python (based on Jupyter Notebooks)
    - `OSMnx <https://github.com/gboeing/osmnx>`__ --> Python for street networks. Retrieve, construct, analyze, and visualize street networks from OpenStreetMap
    -  `Networkx <https://networkx.github.io/documentation/networkx-1.10/overview.html>`__
       --> Network analysis and routing in Python (e.g. Dijkstra and A\*
