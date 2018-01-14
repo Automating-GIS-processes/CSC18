@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-88382509-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reading raster files with Rasterio &mdash; Intro to Python GIS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Intro to Python GIS  documentation" href="../../index.html"/>
+        <link rel="next" title="Visualizing raster layers" href="plotting-raster.html"/>
+        <link rel="prev" title="Automatize data download" href="download-data.html"/>
+    <link href="../../_static/geo-python.css" rel="stylesheet" type="text/css">
+     
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Intro to Python GIS
+          
+
+          
+            
+            <img src="../../_static/logo_small.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2018
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Course information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/course-info.html">General info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/who-are-you.html">Who are you?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/Installing_Anacondas_GIS.html">Installing Python + GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/License-terms.html">License and terms of usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Intro-Python-GIS.html">Introduction to Python GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/overview.html">Lesson overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Geometric-Objects.html">Geometric Objects - Spatial Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/ex-1.html">Exercise 1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L2/overview.html">Lesson 2 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/geopandas-basics.html">Introduction to Geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/projections.html">Map projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/ex-2.html">Exercise 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/exercise-2-hints.html">Exercise 2 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 3</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L3/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/geocoding.html">Geocoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/retrieve-osm-data.html">Retrieving OpenStreetMap data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/ex-3.html">Exercise 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 4</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L4/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/point-in-polygon.html">Point in Polygon &amp; Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/spatial-join.html">Spatial join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/nearest-neighbour.html">Nearest Neighbour Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/ex-4.html">Exercise 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/exercise-4-hints.html">Exercise 4 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 5</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L5/overview.html">Lesson 5 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/static-maps.html">Static maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/interactive-map-bokeh.html">Interactive maps with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/advanced-bokeh.html">Advanced plotting with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/share-on-github.html">Sharing interactive plots on GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/ex-5.html">Exercise 5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 6</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download-data.html">Automatize data download</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading raster files with Rasterio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#read-raster-file-properties">Read raster file properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-raster-bands">Get raster bands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#band-statistics">Band statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plotting-raster.html">Visualizing raster layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster-mosaic.html">Creating a raster mosaic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zonal-statistics.html">Zonal statistics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Intro to Python GIS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Reading raster files with Rasterio</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Automating-GIS-processes/CSC18/blob/master/source/lessons/L6/reading-raster.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reading-raster-files-with-rasterio">
+<h1>Reading raster files with Rasterio<a class="headerlink" href="#reading-raster-files-with-rasterio" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://mapbox.github.io/rasterio/">Rasterio</a> is a highly useful module for raster processing which you can use for reading and writing <a class="reference external" href="http://www.gdal.org/formats_list.html">several different raster formats</a> in Python. Rasterio is based on <a class="reference external" href="http://www.gdal.org/">GDAL</a> and Python automatically registers all known GDAL drivers for reading supported
+formats when importing the module. Most common file formats include for example <a class="reference external" href="http://www.gdal.org/frmt_gtiff.html">TIFF and GeoTIFF</a>,
+<a class="reference external" href="http://www.gdal.org/frmt_various.html#AAIGrid">ASCII Grid</a> and <a class="reference external" href="http://www.gdal.org/frmt_hfa.html">Erdas Imagine .img</a> -files.</p>
+<p><a class="reference external" href="http://landsat.gsfc.nasa.gov/landsat-8/landsat-8-bands/">Landsat 8</a> bands are stored as separate GeoTIFF -files in the original package.
+Each band contains information of surface reflectance from different ranges
+of the electromagnetic spectrum.</p>
+<p>Let&#8217;s start with inspecting one of the files we downloaded:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="gp">In [2]: </span><span class="n">fp</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\Landsat\Helsinki_masked_p188r018_7t20020529_z34__LV-FIN.tif&quot;</span>
+
+<span class="go"># Open the file:</span>
+<span class="gp">In [3]: </span><span class="n">raster</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+<span class="go"># Check type of the variable &#39;raster&#39;</span>
+<span class="gp">In [4]: </span><span class="nb">type</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+<span class="gh">Out[4]: </span><span class="go">rasterio._io.RasterReader</span>
+</pre></div>
+</div>
+<p>Okey so from here we can see that our <code class="docutils literal"><span class="pre">raster</span></code> variable is a <code class="docutils literal"><span class="pre">rasterio._io.RasterReader</span></code> type which means that we have opened the file for reading.</p>
+<div class="section" id="read-raster-file-properties">
+<h2>Read raster file properties<a class="headerlink" href="#read-raster-file-properties" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s have a closer look at the properties of the file:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Projection</span>
+<span class="gp">In [5]: </span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span>
+<span class="gh">Out[5]: </span><span class="go">CRS({&#39;proj&#39;: &#39;tmerc&#39;, &#39;lat_0&#39;: 0, &#39;lon_0&#39;: -183, &#39;k&#39;: 0.9996, &#39;x_0&#39;: 500000, &#39;y_0&#39;: 0, &#39;datum&#39;: &#39;WGS84&#39;, &#39;units&#39;: &#39;m&#39;, &#39;no_defs&#39;: True})</span>
+
+<span class="go"># Dimensions</span>
+<span class="gp">In [6]: </span><span class="n">raster</span><span class="o">.</span><span class="n">width</span>
+<span class="go">                                                                                                                                                 Out[6]: 1288</span>
+
+<span class="gp">In [7]: </span><span class="n">raster</span><span class="o">.</span><span class="n">height</span>
+<span class="go">                                                                                                                                                              Out[7]: 1439</span>
+
+<span class="go"># Number of bands</span>
+<span class="gp">In [8]: </span><span class="n">raster</span><span class="o">.</span><span class="n">count</span>
+<span class="go">                                                                                                                                                                           Out[8]: 7</span>
+
+<span class="go"># Bounds of the file</span>
+<span class="gp">In [9]: </span><span class="n">raster</span><span class="o">.</span><span class="n">bounds</span>
+<span class="go">                                                                                                                                                                                     Out[9]: BoundingBox(left=698592.0, bottom=6656859.0, right=735300.0, top=6697870.5)</span>
+
+<span class="go"># Driver (data format)</span>
+<span class="gp">In [10]: </span><span class="n">raster</span><span class="o">.</span><span class="n">driver</span>
+<span class="go">                                                                                                                                                                                                                                                                         Out[10]: &#39;GTiff&#39;</span>
+
+<span class="go"># No data values for all channels</span>
+<span class="gp">In [11]: </span><span class="n">raster</span><span class="o">.</span><span class="n">nodatavals</span>
+<span class="go">                                                                                                                                                                                                                                                                                          Out[11]: (None, None, None, None, None, None, None)</span>
+
+<span class="go"># All Metadata for the whole raster dataset</span>
+<span class="gp">In [12]: </span><span class="n">raster</span><span class="o">.</span><span class="n">meta</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                              Out[12]: </span>
+<span class="go">{&#39;affine&#39;: Affine(28.5, 0.0, 698592.0,</span>
+<span class="go">       0.0, -28.5, 6697870.5),</span>
+<span class="go"> &#39;count&#39;: 7,</span>
+<span class="go"> &#39;crs&#39;: CRS({&#39;proj&#39;: &#39;tmerc&#39;, &#39;lat_0&#39;: 0, &#39;lon_0&#39;: -183, &#39;k&#39;: 0.9996, &#39;x_0&#39;: 500000, &#39;y_0&#39;: 0, &#39;datum&#39;: &#39;WGS84&#39;, &#39;units&#39;: &#39;m&#39;, &#39;no_defs&#39;: True}),</span>
+<span class="go"> &#39;driver&#39;: &#39;GTiff&#39;,</span>
+<span class="go"> &#39;dtype&#39;: &#39;uint8&#39;,</span>
+<span class="go"> &#39;height&#39;: 1439,</span>
+<span class="go"> &#39;nodata&#39;: None,</span>
+<span class="go"> &#39;transform&#39;: (698592.0, 28.5, 0.0, 6697870.5, 0.0, -28.5),</span>
+<span class="go"> &#39;width&#39;: 1288}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-raster-bands">
+<h2>Get raster bands<a class="headerlink" href="#get-raster-bands" title="Permalink to this headline">¶</a></h2>
+<p>Different bands of a satellite images are often stacked together in one raster dataset. In our case, all seven bands of the Landsat 8 scene are included in our GeoTIFF and the <code class="docutils literal"><span class="pre">count</span></code> is hence 7.</p>
+<p>In order to have a closer look at the values stored in the band, we will take advantage of the <a class="reference external" href="http://gdal.org/python/osgeo.gdal.Band-class.html">GDAL Band API</a>.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Read the raster band as separate variable</span>
+<span class="gp">In [13]: </span><span class="n">band1</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="go"># Check type of the variable &#39;band&#39;</span>
+<span class="gp">In [14]: </span><span class="nb">type</span><span class="p">(</span><span class="n">band1</span><span class="p">)</span>
+<span class="gh">Out[14]: </span><span class="go">numpy.ndarray</span>
+
+<span class="go"># Data type of the values</span>
+<span class="gp">In [15]: </span><span class="n">band1</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">                       Out[15]: dtype(&#39;uint8&#39;)</span>
+</pre></div>
+</div>
+<p>Now we have the values of the raster band stored in the variable <code class="docutils literal"><span class="pre">band1</span></code>.</p>
+<p>Data type of the band can be interpreted with the help of GDAL documentation on <a class="reference external" href="http://www.gdal.org/gdal_8h.html#a22e22ce0a55036a96f652765793fb7a4">Pixel data types</a>.
+Unsigned integer is always equal or greater than zero and signed integer can store also negative values. For example, an unsigned 16-bit integer can
+store 2^16 (=65,536) values ranging from 0 to 65,535.</p>
+</div>
+<div class="section" id="band-statistics">
+<h2>Band statistics<a class="headerlink" href="#band-statistics" title="Permalink to this headline">¶</a></h2>
+<p>Next, let&#8217;s have a look at the values that are stored in the band. As the values of the bands are stored as numpy arrays,
+it is extremely easy to calculate basic statistics by using basic numpy functions.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Read all bands</span>
+<span class="gp">In [16]: </span><span class="n">array</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="go"># Calculate statistics for each band</span>
+<span class="gp">In [17]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="gp">In [18]: </span><span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<span class="gp">   ....: </span>        <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">band</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+<span class="gp">   ....: </span>        <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">band</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="gp">   ....: </span>        <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">band</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">band</span><span class="o">.</span><span class="n">max</span><span class="p">()})</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [19]: </span><span class="k">print</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="go">[{&#39;min&#39;: 0, &#39;mean&#39;: 59.631322325286277, &#39;median&#39;: 61.0, &#39;max&#39;: 255}, {&#39;min&#39;: 0, &#39;mean&#39;: 43.133428148429509, &#39;median&#39;: 43.0, &#39;max&#39;: 255}, {&#39;min&#39;: 0, &#39;mean&#39;: 36.294187755472009, &#39;median&#39;: 31.0, &#39;max&#39;: 255}, {&#39;min&#39;: 0, &#39;mean&#39;: 35.094630393777599, &#39;median&#39;: 13.0, &#39;max&#39;: 255}, {&#39;min&#39;: 0, &#39;mean&#39;: 37.632635025185706, &#39;median&#39;: 13.0, &#39;max&#39;: 255}, {&#39;min&#39;: 0, &#39;mean&#39;: 105.82214777774421, &#39;median&#39;: 114.0, &#39;max&#39;: 175}, {&#39;min&#39;: 0, &#39;mean&#39;: 26.283487605695811, &#39;median&#39;: 14.0, &#39;max&#39;: 255}]</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plotting-raster.html" class="btn btn-neutral float-right" title="Visualizing raster layers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="download-data.html" class="btn btn-neutral" title="Automatize data download" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Henrikki Tenkanen.
+      Last updated on Jan 15, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <p> <br/> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /> </a></p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

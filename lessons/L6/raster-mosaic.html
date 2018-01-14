@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-88382509-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating a raster mosaic &mdash; Intro to Python GIS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Intro to Python GIS  documentation" href="../../index.html"/>
+        <link rel="next" title="Zonal statistics" href="zonal-statistics.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="clipping-raster.html"/>
+    <link href="../../_static/geo-python.css" rel="stylesheet" type="text/css">
+     
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Intro to Python GIS
+          
+
+          
+            
+            <img src="../../_static/logo_small.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2018
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Course information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/course-info.html">General info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/who-are-you.html">Who are you?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/Installing_Anacondas_GIS.html">Installing Python + GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/License-terms.html">License and terms of usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Intro-Python-GIS.html">Introduction to Python GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/overview.html">Lesson overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Geometric-Objects.html">Geometric Objects - Spatial Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/ex-1.html">Exercise 1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L2/overview.html">Lesson 2 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/geopandas-basics.html">Introduction to Geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/projections.html">Map projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/ex-2.html">Exercise 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/exercise-2-hints.html">Exercise 2 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 3</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L3/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/geocoding.html">Geocoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/retrieve-osm-data.html">Retrieving OpenStreetMap data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/ex-3.html">Exercise 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 4</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L4/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/point-in-polygon.html">Point in Polygon &amp; Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/spatial-join.html">Spatial join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/nearest-neighbour.html">Nearest Neighbour Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/ex-4.html">Exercise 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/exercise-4-hints.html">Exercise 4 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 5</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L5/overview.html">Lesson 5 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/static-maps.html">Static maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/interactive-map-bokeh.html">Interactive maps with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/advanced-bokeh.html">Advanced plotting with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/share-on-github.html">Sharing interactive plots on GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/ex-5.html">Exercise 5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 6</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download-data.html">Automatize data download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading-raster.html">Reading raster files with Rasterio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting-raster.html">Visualizing raster layers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating a raster mosaic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zonal-statistics.html">Zonal statistics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Intro to Python GIS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Creating a raster mosaic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Automating-GIS-processes/CSC18/blob/master/source/lessons/L6/raster-mosaic.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-a-raster-mosaic">
+<h1>Creating a raster mosaic<a class="headerlink" href="#creating-a-raster-mosaic" title="Permalink to this headline">¶</a></h1>
+<p>Quite often you need to merge multiple raster files together and create a <em>raster mosaic</em>. This can be done
+easily with the <code class="docutils literal"><span class="pre">merge()</span></code> function in Rasterio.</p>
+<p>Here, we will create a mosaic based on 2X2m resolution DEM files (altogether 12 files) covering the Helsinki Metropolitan region. If you have not downloaded the DEM files
+yet, you can do that by running the script from <a class="reference internal" href="download-data.html"><span class="doc">Automatize data download</span></a> section.</p>
+<ul class="simple">
+<li>Let&#8217;s start by importing required modules and functions.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">rasterio.merge</span> <span class="kn">import</span> <span class="n">merge</span>
+
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="gp">In [4]: </span><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="gp">In [5]: </span><span class="kn">import</span> <span class="nn">os</span>
+</pre></div>
+</div>
+<p>As there are many <code class="docutils literal"><span class="pre">tif</span></code> files in our folder, it is not really pracical to start listing them manually. Luckily,
+we have a module and function called <code class="docutils literal"><span class="pre">glob</span></code> that can be used to create a list of those files that we are interested
+in based on search criteria.</p>
+<ul class="simple">
+<li>Find all <code class="docutils literal"><span class="pre">tif</span></code> files from the folder where the file starts with <code class="docutils literal"><span class="pre">L</span></code> -letter.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># File and folder paths</span>
+<span class="gp">In [6]: </span><span class="n">dirpath</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6&quot;</span>
+
+<span class="gp">In [7]: </span><span class="n">out_fp</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\Helsinki_DEM_2x2m_Mosaic.tif&quot;</span>
+
+<span class="go"># Make a search criteria to select the DEM files</span>
+<span class="gp">In [8]: </span><span class="n">search_criteria</span> <span class="o">=</span> <span class="s2">&quot;L*.tif&quot;</span>
+
+<span class="gp">In [9]: </span><span class="n">q</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">search_criteria</span><span class="p">)</span>
+
+<span class="gp">In [10]: </span><span class="k">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="go">C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L*.tif</span>
+</pre></div>
+</div>
+<p>Now we can see that we have a search criteria (<code class="docutils literal"><span class="pre">q</span></code>) that we can pass to <code class="docutils literal"><span class="pre">glob</span></code> function.</p>
+<ul class="simple">
+<li>List all dem files with glob() function</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">dem_fps</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="gp">In [12]: </span><span class="n">dem_fps</span>
+<span class="gh">Out[12]: </span><span class="go"></span>
+<span class="go">[&#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133A.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133B.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133C.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133D.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133E.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4133F.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134A.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134B.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134C.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134D.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134E.tif&#39;,</span>
+<span class="go"> &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\L4134F.tif&#39;]</span>
+</pre></div>
+</div>
+<p>Great! Now we have all those 12 files in a list and we can start to make a mosaic out of them.</p>
+<ul class="simple">
+<li>Let&#8217;s first create an empty list for the datafiles that will be part of the mosaic.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">src_files_to_mosaic</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now we open all those files in read mode with raterio and add those files into a our source file list.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="k">for</span> <span class="n">fp</span> <span class="ow">in</span> <span class="n">dem_fps</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">src</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="n">src_files_to_mosaic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [15]: </span><span class="n">src_files_to_mosaic</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
+<span class="go">[&lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133A.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133B.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133C.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133D.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133E.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4133F.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134A.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134B.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134C.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134D.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134E.tif&#39; mode=&#39;r&#39;&gt;,</span>
+<span class="go"> &lt;open RasterReader name=&#39;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\L4134F.tif&#39; mode=&#39;r&#39;&gt;]</span>
+</pre></div>
+</div>
+<p>Okey, now we can see that we have a list full of open raster objects.</p>
+<ul class="simple">
+<li>Now it is really easy to merge those together and create a mosaic with rasterio&#8217;s <code class="docutils literal"><span class="pre">merge</span></code> function.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Merge function returns a single mosaic array and the transformation info</span>
+<span class="gp">In [16]: </span><span class="n">mosaic</span><span class="p">,</span> <span class="n">out_trans</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">src_files_to_mosaic</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Let&#8217;s check that it looks okey.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">show</span><span class="p">(</span><span class="n">mosaic</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;spectral&#39;</span><span class="p">)</span>
+<span class="gh">Out[17]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1ce19bd2dd8&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/raster_mosaic.png"><img alt="../../_images/raster_mosaic.png" src="../../_images/raster_mosaic.png" style="width: 400px;" /></a>
+<p>Great, it looks correct! Now we are ready to save our mosaic to disk.</p>
+<ul class="simple">
+<li>Let&#8217;s first update the metadata with our new dimensions, transform and CRS</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Copy the metadata</span>
+<span class="gp">In [18]: </span><span class="n">out_meta</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="go"># Update the metadata</span>
+<span class="gp">In [19]: </span><span class="n">out_meta</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;driver&quot;</span><span class="p">:</span> <span class="s2">&quot;GTiff&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">mosaic</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">mosaic</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="n">out_trans</span><span class="p">,</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="s2">&quot;+proj=utm +zone=35 +ellps=GRS80 +units=m +no_defs &quot;</span>
+<span class="gp">   ....: </span>                 <span class="p">}</span>
+<span class="gp">   ....: </span>                <span class="p">)</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Finally we can write our mosaic to our computer</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Write the mosaic raster to disk</span>
+<span class="gp">In [20]: </span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_fp</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">out_meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mosaic</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<p>That&#8217;s it! Easy!</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="zonal-statistics.html" class="btn btn-neutral float-right" title="Zonal statistics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clipping-raster.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Henrikki Tenkanen.
+      Last updated on Jan 15, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <p> <br/> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /> </a></p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
