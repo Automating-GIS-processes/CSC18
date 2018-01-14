@@ -132,7 +132,6 @@ Contents
    lessons/L4/overview
    lessons/L4/point-in-polygon
    lessons/L4/spatial-join
-   lessons/L4/geometric-operation
    lessons/L4/nearest-neighbour
    lessons/L4/ex-4
    lessons/L4/exercise-4-hints
