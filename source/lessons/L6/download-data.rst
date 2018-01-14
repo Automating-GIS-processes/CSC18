@@ -22,14 +22,24 @@ You can download those files into your computer automatically with following scr
         if url.find('/'):
             return url.rsplit('/', 1)[1]
 
-    # Directory path where files will be saved
-    outdir = r"/geo/data/CSC_Lesson6"
+    # Filepaths
+    outdir = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6"
 
-    # File locations (url-addresses of the files)
+    # File locations
     url_list = ["http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133A.tif",
                 "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133B.tif",
                 "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133C.tif",
                 "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133D.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133E.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4133F.tif",
+
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134A.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134B.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134C.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134D.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134E.tif",
+                "http://www.nic.funet.fi/index/geodata/mml/korkeusmalli2m/2017/L4/L41/L4134F.tif",
+
                 "https://etsin.avointiede.fi/storage/f/paituli/ehdot/Latuviitta_ehdot.pdf",
                 "https://etsin.avointiede.fi/storage/f/paituli/ehdot/MML_ehdot_CC.txt",
                 "https://github.com/Automating-GIS-processes/CSC18/raw/master/data/Helsinki_masked_p188r018_7t20020529_z34__LV-FIN.tif"
