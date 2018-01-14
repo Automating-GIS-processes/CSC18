@@ -153,5 +153,15 @@ Contents
    :maxdepth: 2
    :caption: Lesson 6
 
+   lessons/L6/overview
+   lessons/L6/download-data
+   lessons/L6/reading-raster
+   lessons/L6/plotting-raster
+   lessons/L6/clipping-raster
+   lessons/L6/raster-mosaic
+   lessons/L6/zonal-statistics
+
+
+
 
 

@@ -41,7 +41,7 @@ Now we can see that we have a search criteria (``q``) that we can pass to ``glob
 .. ipython:: python
 
     dem_fps = glob.glob(q)
-    demp_fps
+    dem_fps
 
 Great! Now we have all those 12 files in a list and we can start to make a mosaic out of them.
 

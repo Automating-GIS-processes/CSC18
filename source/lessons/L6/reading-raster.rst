@@ -81,7 +81,8 @@ store 2^16 (=65,536) values ranging from 0 to 65,535.
 Band statistics
 ---------------
 
-Next, let's have a look at the values that are stored in the band. You might need to calculate statistics for the raster before being able to print out any information.
+Next, let's have a look at the values that are stored in the band. As the values of the bands are stored as numpy arrays,
+it is extremely easy to calculate basic statistics by using basic numpy functions.
 
 .. ipython:: python
 

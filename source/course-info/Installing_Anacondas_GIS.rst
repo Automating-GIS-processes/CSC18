@@ -230,7 +230,7 @@ Well, the answer is the same is in many other cases nowadays, **Google it!**
 
 Let's find our way to install the Shapely module by typing following query to Google:
 
-.. image:: img/google_query_conda.PNG
+.. image:: ../img/google_query_conda.PNG
 
 Okey, we have different pages showing how to install Shapely using conda package manager.
 
@@ -239,11 +239,11 @@ Okey, we have different pages showing how to install Shapely using conda package
 We need to check the operating system banners and if you find a logo of the operating system of your computer,
 that is the one to use! Thus, in our case the first page that Google gives does not work in Windows but the second one does, as it has Windows logo on it:
 
-.. image:: img/conda_shapely_windows.PNG
+.. image:: ../img/conda_shapely_windows.PNG
 
 From here we can get the correct installation command for conda and it works!
 
-.. image:: img/install_shapely.PNG
+.. image:: ../img/install_shapely.PNG
 
 You can follow these steps similarly for all of the other Python modules that you are interested to install.
 
