@@ -51,8 +51,11 @@ The materials are divided into following themes:
 +----------------+---------------------------------+
 |   *Tue 12-13*  |          *Lunch*                |
 +----------------+---------------------------------+
+| Tue 13-13:15   |  Running Python scripts on      |
+|                |  CSC's Taito supercluster       |
++----------------+---------------------------------+
 | **Lesson 4**   | Geometric operations;           |
-|  Tue 13-16     | Spatial queries;                |
+|  Tue 13:15-16  | Spatial queries;                |
 |                |                                 |
 +----------------+---------------------------------+
 | **Lesson 5**   | Visualization, making static    |
