@@ -18,10 +18,11 @@ dem_fp = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_L
 # Read in the data
 dem = rasterio.open(dem_fp)
 
-# Retrieve 'Kallio' and 'Pihlajamäki' regions from OpenStreetMap
+# Place names for Kallio and Pihlajamäki that Nominatim can identify https://nominatim.openstreetmap.org/
 kallio_q = "Kallio, Helsinki, Finland"
 pihlajamaki_q = "Pihlajamäki, Malmi, Helsinki, Finland"
 
+# Retrieve 'Kallio' and 'Pihlajamäki' regions from OpenStreetMap
 kallio = ox.gdf_from_place(kallio_q)
 pihlajamaki = ox.gdf_from_place(pihlajamaki_q)
 
@@ -29,12 +30,12 @@ pihlajamaki = ox.gdf_from_place(pihlajamaki_q)
 kallio = kallio.to_crs(crs=dem.crs.data)
 pihlajamaki = pihlajamaki.to_crs(crs=dem.crs.data)
 
+# Plot the DEM and the regions on top of it
 ax = show((dem, 1))
 kallio.plot(ax=ax, facecolor='None', edgecolor='red', linewidth=2)
 pihlajamaki.plot(ax=ax, facecolor='None', edgecolor='blue', linewidth=2)
 
-# Which one is higher?
-# We can use zonal statistics to find out!
+# Which one is higher? Kallio or Pihlajamäki? We can use zonal statistics to find out!
 
 # First we need to get the values of the dem as numpy array and the affine of the raster
 array = dem.read(1)
