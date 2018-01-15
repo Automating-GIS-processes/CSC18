@@ -343,16 +343,148 @@ data looks like following:</p>
 
 <span class="go"># Geocode addresses with Nominatim backend</span>
 <span class="gp">In [3]: </span><span class="n">geo</span> <span class="o">=</span> <span class="n">geocode</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;addr&#39;</span><span class="p">],</span> <span class="n">provider</span><span class="o">=</span><span class="s1">&#39;nominatim&#39;</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">timeout</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">do_open</span><span class="nt">(self, http_class, req, **http_conn_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1317</span>                 <span class="n">h</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">(),</span> <span class="n">req</span><span class="o">.</span><span class="n">selector</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1318</span>                           <span class="n">encode_chunked</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">has_header</span><span class="p">(</span><span class="s1">&#39;Transfer-encoding&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1319</span>             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span> <span class="c1"># timeout error</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span>         <span class="sd">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1239</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">_send_request</span><span class="nt">(self, method, url, body, headers, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span>             <span class="n">body</span> <span class="o">=</span> <span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1285</span>         <span class="bp">self</span><span class="o">.</span><span class="n">endheaders</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1286</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">endheaders</span><span class="nt">(self, message_body, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1233</span>             <span class="k">raise</span> <span class="n">CannotSendHeader</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1234</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_send_output</span><span class="p">(</span><span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">_send_output</span><span class="nt">(self, message_body, encode_chunked)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1025</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">[:]</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span>         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1027</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">send</span><span class="nt">(self, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">963</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_open</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">964</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">965</span>             <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\http\client.py</span> in <span class="ni">connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1399</span>             <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1400</span>                                                   <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1401</span>             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">check_hostname</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_hostname</span><span class="p">:</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\ssl.py</span> in <span class="ni">wrap_socket</span><span class="nt">(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>                          <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">401</span>                          <span class="n">_context</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\ssl.py</span> in <span class="ni">__init__</span><span class="nt">(self, sock, keyfile, certfile, server_side, cert_reqs, ssl_version, ca_certs, do_handshake_on_connect, family, type, proto, fileno, suppress_ragged_eofs, npn_protocols, ciphers, server_hostname, _context, _session)</span>
+<span class="g g-Whitespace">    </span><span class="mi">807</span>                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;do_handshake_on_connect should not be specified for non-blocking sockets&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">808</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\ssl.py</span> in <span class="ni">do_handshake</span><span class="nt">(self, block)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1060</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1061</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1062</span>         <span class="k">finally</span><span class="p">:</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\ssl.py</span> in <span class="ni">do_handshake</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span>         <span class="sd">&quot;&quot;&quot;Start the SSL/TLS handshake.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">683</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">check_hostname</span><span class="p">:</span>
+
+<span class="ne">timeout</span>: _ssl.c:733: The handshake operation timed out
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">URLError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\geopy\geocoders\base.py</span> in <span class="ni">_call_geocoder</span><span class="nt">(self, url, timeout, raw, requester, deserializer, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">143</span>             <span class="n">page</span> <span class="o">=</span> <span class="n">requester</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="p">(</span><span class="n">timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span> <span class="c1"># pylint: disable=W0703</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="n">opener</span> <span class="o">=</span> <span class="n">_opener</span>
+<span class="ne">--&gt; </span><span class="mi">223</span>     <span class="k">return</span> <span class="n">opener</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">open</span><span class="nt">(self, fullurl, data, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span> 
+<span class="ne">--&gt; </span><span class="mi">526</span>         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">_open</span><span class="nt">(self, req, data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_open</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">+</span>
+<span class="ne">--&gt; </span><span class="mi">544</span>                                   <span class="s1">&#39;_open&#39;</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span>         <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">_call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>             <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">meth_name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">504</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">https_open</span><span class="nt">(self, req)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1360</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_open</span><span class="p">(</span><span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1361</span>                 <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">,</span> <span class="n">check_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_check_hostname</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1362</span> 
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\urllib\request.py</span> in <span class="ni">do_open</span><span class="nt">(self, http_class, req, **http_conn_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1319</span>             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span> <span class="c1"># timeout error</span>
+<span class="ne">-&gt; </span><span class="mi">1320</span>                 <span class="k">raise</span> <span class="n">URLError</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1321</span>             <span class="n">r</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+
+<span class="ne">URLError</span>: &lt;urlopen error _ssl.c:733: The handshake operation timed out&gt;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">GeocoderTimedOut</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-3-ba8493af24dd&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">geo</span> <span class="o">=</span> <span class="n">geocode</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;addr&#39;</span><span class="p">],</span> <span class="n">provider</span><span class="o">=</span><span class="s1">&#39;nominatim&#39;</span><span class="p">)</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\geopandas\tools\geocoding.py</span> in <span class="ni">geocode</span><span class="nt">(strings, provider, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> 
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">62</span><span class="s2">     return _query(strings, True, provider, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="s2"> </span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\geopandas\tools\geocoding.py</span> in <span class="ni">_query</span><span class="nt">(data, forward, provider, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="s2">             if forward:</span>
+<span class="ne">--&gt; </span><span class="mi">138</span><span class="s2">                 results[i] = coder.geocode(s)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="s2">             else:</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="s2">                 results[i] = coder.reverse((s.y, s.x), exactly_one=True)</span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\geopy\geocoders\osm.py</span> in <span class="ni">geocode</span><span class="nt">(self, query, exactly_one, timeout, addressdetails, language, geometry)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span><span class="s2">         logger.debug(&quot;</span><span class="si">%s</span><span class="s2">.geocode: </span><span class="si">%s</span><span class="s2">&quot;, self.__class__.__name__, url)</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="s2">         return self._parse_json(</span>
+<span class="ne">--&gt; </span><span class="mi">193</span><span class="s2">             self._call_geocoder(url, timeout=timeout), exactly_one</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="s2">         )</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span><span class="s2"> </span>
+
+<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\geopy\geocoders\base.py</span> in <span class="ni">_call_geocoder</span><span class="nt">(self, url, timeout, raw, requester, deserializer, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span><span class="s2">             elif isinstance(error, URLError):</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span><span class="s2">                 if &quot;timed out&quot; in message:</span>
+<span class="ne">--&gt; </span><span class="mi">163</span><span class="s2">                     raise GeocoderTimedOut(&#39;Service timed out&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span><span class="s2">                 elif &quot;unreachable&quot; in message:</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span><span class="s2">                     raise GeocoderUnavailable(&#39;Service not available&#39;)</span>
+
+<span class="ne">GeocoderTimedOut</span>: Service timed out
 
 <span class="gp">In [4]: </span><span class="n">geo</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[4]: </span><span class="go"></span>
-<span class="go">                                             address  \</span>
-<span class="go">0  Ruoholahti, 14, Itämerenkatu, Ruoholahti, Läns...   </span>
-<span class="go">1  Kamppi, 1, Kampinkuja, Kamppi, Eteläinen suurp...   </span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-4-d69786f2c8cf&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 geo.head(2)</span>
 
-<span class="go">                        geometry  </span>
-<span class="go">0  POINT (24.9155655 60.1632005)  </span>
-<span class="go">1  POINT (24.9316914 60.1690222)  </span>
+<span class="go">NameError: name &#39;geo&#39; is not defined</span>
 </pre></div>
 </div>
 <p>And Voilà! As a result we have a GeoDataFrame that contains our original
@@ -382,36 +514,32 @@ as in our original <code class="docutils literal"><span class="pre">data</span><
 <p>Hence, we can join those tables together with <code class="docutils literal"><span class="pre">join()</span></code> -function which merges the two DataFrames together
 based on index by default.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">join</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-5-adf01573572d&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">join</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;geo&#39; is not defined
 
 <span class="gp">In [6]: </span><span class="n">join</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="gh">Out[6]: </span><span class="go"></span>
-<span class="go">                                             address  \</span>
-<span class="go">0  Ruoholahti, 14, Itämerenkatu, Ruoholahti, Läns...   </span>
-<span class="go">1  Kamppi, 1, Kampinkuja, Kamppi, Eteläinen suurp...   </span>
-<span class="go">2  Citycenter, 8, Kaivokatu, Keskusta, Kluuvi, Et...   </span>
-<span class="go">3  Hermannin rantatie, Kyläsaari, Hermanni, Helsi...   </span>
-<span class="go">4  Hesburger Jätkäsaari, 9, Tyynenmerenkatu, Jätk...   </span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-6-6f7af27f135e&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 join.head()</span>
 
-<span class="go">                             geometry    id  \</span>
-<span class="go">0       POINT (24.9155655 60.1632005)  1000   </span>
-<span class="go">1       POINT (24.9316914 60.1690222)  1001   </span>
-<span class="go">2  POINT (24.94244049213 60.16988445)  1002   </span>
-<span class="go">3       POINT (24.9709473 60.1975589)  1003   </span>
-<span class="go">4       POINT (24.9215601 60.1566956)  1005   </span>
-
-<span class="go">                                            addr  </span>
-<span class="go">0       Itämerenkatu 14, 00101 Helsinki, Finland  </span>
-<span class="go">1          Kampinkuja 1, 00100 Helsinki, Finland  </span>
-<span class="go">2           Kaivokatu 8, 00101 Helsinki, Finland  </span>
-<span class="go">3  Hermannin rantatie 1, 00580 Helsinki, Finland  </span>
-<span class="go">4     Tyynenmerenkatu 9, 00220 Helsinki, Finland  </span>
+<span class="go">NameError: name &#39;join&#39; is not defined</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li>Let&#8217;s also check the data type of our new <code class="docutils literal"><span class="pre">join</span></code> table.</li>
 </ul>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="nb">type</span><span class="p">(</span><span class="n">join</span><span class="p">)</span>
-<span class="gh">Out[7]: </span><span class="go">geopandas.geodataframe.GeoDataFrame</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-7-9a8f935adda6&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">type</span><span class="p">(</span><span class="n">join</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;join&#39; is not defined
 </pre></div>
 </div>
 <p>As a result we have a new GeoDataFrame called <code class="docutils literal"><span class="pre">join</span></code> where we now have
@@ -429,7 +557,12 @@ all original columns plus a new column for <code class="docutils literal"><span 
 <p>That&#8217;s it. Now we have successfully geocoded those addresses into Points
 and made a Shapefile out of them. Easy isn&#8217;t it! Let&#8217;s still take a look how our data looks like.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">join</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7f48e3588&gt;</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-8-1856f3ff34c7&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">join</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;join&#39; is not defined
 
 <span class="gp">In [9]: </span><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
@@ -467,7 +600,7 @@ such <a class="reference external" href="https://geo-python.github.io/2017/lesso
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Henrikki Tenkanen.
-      Last updated on Jan 15, 2018.
+      Last updated on Jan 16, 2018.
 
     </p>
   </div>
