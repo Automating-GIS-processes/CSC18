@@ -4,9 +4,8 @@ Overview
 During this lesson we will learn a few really useful and commonly used GIS functionalities using Geopandas, namely:
 
 1. :doc:`Geocoding addresses to Points (and vice versa) <geocoding>`
-2. :doc:`Conducting Point in Polygon queries <point-in-polygon>`
-3. :doc:`Making Spatial joins <spatial-join>`
-4. :doc:`Finding Nearest neighbour of a geometry <nearest-neighbour>`
+2. :doc:`Retrieve OpenStreetMap data <retrieve-osm-data>`
+3. :doc:`Data classifications <reclassify>`
 
 Learning goals
 --------------
@@ -14,10 +13,8 @@ Learning goals
 After this lesson you should be able to:
 
  - Do geocoding, i.e. converting addresses into Points (and vice versa)
- - Conduct a Point in Polygon queries
- - Read data from KML file
- - Make spatial and table joins between layers
- - Find the nearest neighbour from Point -objects.
+ - Download data from OpenStreetMap using Python
+ - Reclassify data based on different criteria (custom or common classifiers).
 
 Sources
 -------
