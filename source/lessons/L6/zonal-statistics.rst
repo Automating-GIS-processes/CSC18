@@ -15,7 +15,7 @@ Quite often you have a situtation when you want to summarize raster datasets bas
     # Filepaths
     dem_fp = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\Helsinki_DEM_2x2m_Mosaic.tif"
 
-    # Read in the data
+    # Read in the DEM data
     dem = rasterio.open(dem_fp)
 
     # Place names for Kallio and Pihlajamäki that Nominatim can identify https://nominatim.openstreetmap.org/
@@ -33,9 +33,10 @@ Quite often you have a situtation when you want to summarize raster datasets bas
     # Plot the DEM and the regions on top of it
     ax = show((dem, 1))
     kallio.plot(ax=ax, facecolor='None', edgecolor='red', linewidth=2)
+    @savefig zonal_stat_areas.png width=450px
     pihlajamaki.plot(ax=ax, facecolor='None', edgecolor='blue', linewidth=2)
 
-    # Which one is higher? Kallio or Pihlajamäki? We can use zonal statistics to find out!
+    # **Which one is higher? Kallio or Pihlajamäki? We can use zonal statistics to find out!**
 
     # First we need to get the values of the dem as numpy array and the affine of the raster
     array = dem.read(1)
