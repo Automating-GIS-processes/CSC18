@@ -74,6 +74,70 @@ Available map classifiers in pysal -module are (`see here for more details <http
  - Std_Mean
  - User_Defined
 
+First, we need to read our Travel Time data from Helsinki into memory from the GeoJSON file that `we prepared earlier <Lesson4-geometric-operations.html>`_ with overlay analysis.
+
+.. code:: python
+
+   fp = r"/home/geo/TravelTimes_to_5975375_RailwayStation_Helsinki.geojson"
+
+   # Read the GeoJSON file similarly as Shapefile
+   acc = gpd.read_file(fp)
+
+   # Let's see what we have
+   acc.head(2)
+
+.. ipython:: python
+   :suppress:
+
+     import gdal
+     import geopandas as gpd
+     import os
+     fp = os.path.join(os.path.abspath('data'), "TravelTimes_to_5975375_RailwayStation_Helsinki.geojson")
+     acc = gpd.read_file(fp)
+     acc.head(2)
+
+Okey we have plenty of different variables (see `from here the description <http://blogs.helsinki.fi/accessibility/helsinki-region-travel-time-matrix-2015/>`_
+for all attributes) but what we are
+interested in are columns called ``pt_r_tt`` which is telling the time in minutes that it takes to reach city center
+from different parts of the city, and ``walk_d`` that tells the network distance by roads to reach city center
+from different parts of the city (almost equal to Euclidian distance).
+
+**The NoData values are presented with value -1**. Thus we need to remove those first.
+
+.. ipython:: python
+
+   acc = acc.ix[acc['pt_r_tt'] >=0]
+
+Let's plot it and see how our data looks like.
+
+.. ipython:: python
+
+   import matplotlib.pyplot as plt
+
+   # Plot using 9 classes and classify the values using "Fisher Jenks" classification
+   acc.plot(column="pt_r_tt", scheme="Fisher_Jenks", k=9, cmap="RdYlBu", linewidth=0);
+
+   # Use tight layour
+   @savefig pt_time.png width=7in
+   plt.tight_layout()
+
+Okey so from this figure we can see that the travel times are lower in the south where
+the city center is located but there are some areas of "good" accessibility also in some other areas
+(where the color is red).
+
+Let's also make a plot about walking distances
+
+.. ipython:: python
+
+   acc.plot(column="walk_d", scheme="Fisher_Jenks", k=9, cmap="RdYlBu", linewidth=0);
+
+   # Use tight layour
+   @savefig walk_distances.png width=7in
+   plt.tight_layout();
+
+Okey, from here we can see that the walking distances (along road network) reminds
+more or less Euclidian distances.
+
 Let's apply one of those classifiers into our data and classify the travel times by public transport into 9 classes.
 
 .. ipython:: python
@@ -174,71 +238,7 @@ Let's call it customClassifier2 as it takes into account two criteria:
 
 Okey, now we have our classifier ready, let's use it to our data.
 
-First, we need to read our Travel Time data from Helsinki into memory from the GeoJSON file that `we prepared earlier <Lesson4-geometric-operations.html>`_ with overlay analysis.
-
-.. code:: python
-
-   fp = r"/home/geo/TravelTimes_to_5975375_RailwayStation_Helsinki.geojson"
-
-   # Read the GeoJSON file similarly as Shapefile
-   acc = gpd.read_file(fp)
-
-   # Let's see what we have
-   acc.head(2)
-
-.. ipython:: python
-   :suppress:
-
-     import gdal
-     import geopandas as gpd
-     import os
-     fp = os.path.join(os.path.abspath('data'), "TravelTimes_to_5975375_RailwayStation_Helsinki.geojson")
-     acc = gpd.read_file(fp)
-     acc.head(2)
-
-Okey we have plenty of different variables (see `from here the description <http://blogs.helsinki.fi/accessibility/helsinki-region-travel-time-matrix-2015/>`_
-for all attributes) but what we are
-interested in are columns called ``pt_r_tt`` which is telling the time in minutes that it takes to reach city center
-from different parts of the city, and ``walk_d`` that tells the network distance by roads to reach city center
-from different parts of the city (almost equal to Euclidian distance).
-
-**The NoData values are presented with value -1**. Thus we need to remove those first.
-
-.. ipython:: python
-
-   acc = acc.ix[acc['pt_r_tt'] >=0]
-
-Let's plot it and see how our data looks like.
-
-.. ipython:: python
-
-   import matplotlib.pyplot as plt
-
-   # Plot using 9 classes and classify the values using "Fisher Jenks" classification
-   acc.plot(column="pt_r_tt", scheme="Fisher_Jenks", k=9, cmap="RdYlBu", linewidth=0);
-
-   # Use tight layour
-   @savefig pt_time.png width=7in
-   plt.tight_layout()
-
-Okey so from this figure we can see that the travel times are lower in the south where
-the city center is located but there are some areas of "good" accessibility also in some other areas
-(where the color is red).
-
-Let's also make a plot about walking distances
-
-.. ipython:: python
-
-   acc.plot(column="walk_d", scheme="Fisher_Jenks", k=9, cmap="RdYlBu", linewidth=0);
-
-   # Use tight layour
-   @savefig walk_distances.png width=7in
-   plt.tight_layout();
-
-Okey, from here we can see that the walking distances (along road network) reminds
-more or less Euclidian distances.
-
-Let's finally do our classification based on two criteria
+Let's do our classification based on two criteria
 and find out grid cells where the **travel time is lower or equal to 20 minutes** but they are further away
 **than 4 km (4000 meters) from city center**.
 
