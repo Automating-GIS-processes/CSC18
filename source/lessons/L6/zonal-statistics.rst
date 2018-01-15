@@ -12,7 +12,7 @@ Quite often you have a situtation when you want to summarize raster datasets bas
     import osmnx as ox
     import geopandas as gpd
 
-    # Filepaths
+    # Filepaths (this is the mosaic raster file that was created earlier)
     dem_fp = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\Helsinki_DEM_2x2m_Mosaic.tif"
 
     # Read in the DEM data
