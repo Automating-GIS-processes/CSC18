@@ -13,9 +13,10 @@ Learning goals
 
 After this week's lesson you should be able to:
 
- - Reclassify data based on different criteria (custom or common classifiers).
-
- - Do a simple overlay analysis such as selecting data from one layer based on boundaries of another layer.
+ - Conduct a Point in Polygon queries
+ - Read data from KML file
+ - Make spatial and table joins between layers
+ - Find the nearest neighbour from Point -objects.
 
 Sources
 -------

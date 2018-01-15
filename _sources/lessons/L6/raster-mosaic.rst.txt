@@ -76,7 +76,7 @@ Okey, now we can see that we have a list full of open raster objects.
 .. ipython:: python
 
     @savefig raster_mosaic.png width=400px
-    show(mosaic, cmap='spectral')
+    show(mosaic, cmap='terrain')
 
 Great, it looks correct! Now we are ready to save our mosaic to disk.
 

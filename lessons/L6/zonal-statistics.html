@@ -133,6 +133,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../L3/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/geocoding.html">Geocoding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/retrieve-osm-data.html">Retrieving OpenStreetMap data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/reclassify.html">Data reclassification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/ex-3.html">Exercise 3</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Lesson 4</span></p>
@@ -230,10 +231,92 @@
 <h1>Zonal statistics<a class="headerlink" href="#zonal-statistics" title="Permalink to this headline">¶</a></h1>
 <p>Quite often you have a situtation when you want to summarize raster datasets based on vector geometries.
 <a class="reference external" href="https://github.com/perrygeo/python-rasterstats">Rasterstats</a> is a Python module that does exactly that, easily.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Add docs to find average elevations for different areas of Helsinki Region.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">rasterstats</span> <span class="kn">import</span> <span class="n">zonal_stats</span>
+
+<span class="gp">In [4]: </span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="kn">as</span> <span class="nn">ox</span>
+
+<span class="gp">In [5]: </span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
+</pre></div>
 </div>
+<ul class="simple">
+<li>Specify filepath, this is the mosaic raster file that was created earlier.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">dem_fp</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\CSC_Lesson6\Helsinki_DEM_2x2m_Mosaic.tif&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Read in the DEM data</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">dem</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dem_fp</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Specify place names for Kallio and Pihlajamäki that Nominatim can identify <a class="reference external" href="https://nominatim.openstreetmap.org/">https://nominatim.openstreetmap.org/</a></li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">kallio_q</span> <span class="o">=</span> <span class="s2">&quot;Kallio, Helsinki, Finland&quot;</span>
+
+<span class="gp">In [9]: </span><span class="n">pihlajamaki_q</span> <span class="o">=</span> <span class="s2">&quot;Pihlajamäki, Malmi, Helsinki, Finland&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Retrieve &#8216;Kallio&#8217; and &#8216;Pihlajamäki&#8217; regions from OpenStreetMap</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">kallio</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">gdf_from_place</span><span class="p">(</span><span class="n">kallio_q</span><span class="p">)</span>
+
+<span class="gp">In [11]: </span><span class="n">pihlajamaki</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">gdf_from_place</span><span class="p">(</span><span class="n">pihlajamaki_q</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Reproject the regions to same CRS as the DEM</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">kallio</span> <span class="o">=</span> <span class="n">kallio</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">dem</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="gp">In [13]: </span><span class="n">pihlajamaki</span> <span class="o">=</span> <span class="n">pihlajamaki</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">dem</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Plot the DEM and the regions on top of it</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">ax</span> <span class="o">=</span> <span class="n">show</span><span class="p">((</span><span class="n">dem</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="gp">In [15]: </span><span class="n">kallio</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[15]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e783cda940&gt;</span>
+
+<span class="gp">In [16]: </span><span class="n">pihlajamaki</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">                                                                  Out[16]: &lt;matplotlib.axes._subplots.AxesSubplot at 0x1e783cda940&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/zonal_stat_areas.png"><img alt="../../_images/zonal_stat_areas.png" src="../../_images/zonal_stat_areas.png" style="width: 450px;" /></a>
+<p><strong>Which one is higher? Kallio or Pihlajamäki? We can use zonal statistics to find out!</strong></p>
+<ul class="simple">
+<li>First we need to get the values of the dem as numpy array and the affine of the raster</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">array</span> <span class="o">=</span> <span class="n">dem</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [18]: </span><span class="n">affine</span> <span class="o">=</span> <span class="n">dem</span><span class="o">.</span><span class="n">affine</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now we can calculate the zonal statistics by using the function <code class="docutils literal"><span class="pre">zonal_stats</span></code>.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">zs_kallio</span> <span class="o">=</span> <span class="n">zonal_stats</span><span class="p">(</span><span class="n">kallio</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;majority&#39;</span><span class="p">])</span>
+
+<span class="gp">In [20]: </span><span class="n">zs_pihla</span> <span class="o">=</span> <span class="n">zonal_stats</span><span class="p">(</span><span class="n">pihlajamaki</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span> <span class="n">stats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;majority&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Okey. So what do we have now?</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="k">print</span><span class="p">(</span><span class="n">zs_kallio</span><span class="p">)</span>
+<span class="go">[{&#39;min&#39;: -2.1760001182556152, &#39;max&#39;: 37.388999938964844, &#39;mean&#39;: 12.96425898303966, &#39;median&#39;: 11.75100040435791, &#39;majority&#39;: 0.3490000069141388}]</span>
+
+<span class="gp">In [22]: </span><span class="k">print</span><span class="p">(</span><span class="n">zs_pihla</span><span class="p">)</span>
+<span class="go">                                                                                                                                                  [{&#39;min&#39;: 8.73799991607666, &#39;max&#39;: 46.30400085449219, &#39;mean&#39;: 24.560033970865877, &#39;median&#39;: 24.17300033569336, &#39;majority&#39;: 10.41100025177002}]</span>
+</pre></div>
+</div>
+<p>Super! Now we can see that <code class="docutils literal"><span class="pre">Pihlajamäki</span></code> seems to be slightly higher compared to <code class="docutils literal"><span class="pre">Kallio</span></code>.</p>
 </div>
 
 

@@ -134,6 +134,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../L3/overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/geocoding.html">Geocoding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/retrieve-osm-data.html">Retrieving OpenStreetMap data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/reclassify.html">Data reclassification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../L3/ex-3.html">Exercise 3</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Lesson 4</span></p>
@@ -247,19 +248,19 @@
 <span class="gp">In [4]: </span><span class="n">raster</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 
 <span class="gp">In [5]: </span><span class="n">show</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
-<span class="gh">Out[5]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x15de5dc0358&gt;</span>
+<span class="gh">Out[5]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7fe8a9f60&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/raster_image.png"><img alt="../../_images/raster_image.png" src="../../_images/raster_image.png" style="width: 600px;" /></a>
 <p>You can also plot different individual channels.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
-<span class="gh">Out[6]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x15de99fb198&gt;</span>
+<span class="gh">Out[6]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7838182b0&gt;</span>
 
 <span class="gp">In [7]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
-<span class="gh">Out[7]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x15de99fb198&gt;</span>
+<span class="gh">Out[7]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7838182b0&gt;</span>
 
 <span class="gp">In [8]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
-<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x15de99fb198&gt;</span>
+<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7838182b0&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/raster_band_red.png"><img alt="../../_images/raster_band_red.png" class="align-left" src="../../_images/raster_band_red.png" style="width: 220px;" /></a>

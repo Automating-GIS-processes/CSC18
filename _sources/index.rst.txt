@@ -125,6 +125,7 @@ Contents
    lessons/L3/overview
    lessons/L3/geocoding
    lessons/L3/retrieve-osm-data
+   lessons/L3/reclassify
    lessons/L3/ex-3
    lessons/L3/exercise-3-hints
 
