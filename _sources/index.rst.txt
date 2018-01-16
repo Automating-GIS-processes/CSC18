@@ -162,6 +162,7 @@ Contents
    lessons/L6/reading-raster
    lessons/L6/plotting-raster
    lessons/L6/clipping-raster
+   lessons/L6/raster-calculations
    lessons/L6/raster-mosaic
    lessons/L6/zonal-statistics
 

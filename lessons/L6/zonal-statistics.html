@@ -160,6 +160,8 @@
 <li class="toctree-l1"><a class="reference internal" href="download-data.html">Automatize data download</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reading-raster.html">Reading raster files with Rasterio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting-raster.html">Visualizing raster layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clipping-raster.html">Masking / clipping raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster-calculations.html">Raster calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster-mosaic.html">Creating a raster mosaic</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Zonal statistics</a></li>
 </ul>
@@ -284,10 +286,10 @@
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">ax</span> <span class="o">=</span> <span class="n">show</span><span class="p">((</span><span class="n">dem</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="gp">In [15]: </span><span class="n">kallio</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[15]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd45fe8748&gt;</span>
+<span class="gh">Out[15]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c92beb278&gt;</span>
 
 <span class="gp">In [16]: </span><span class="n">pihlajamaki</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">                                                                  Out[16]: &lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd45fe8748&gt;</span>
+<span class="go">                                                                  Out[16]: &lt;matplotlib.axes._subplots.AxesSubplot at 0x20c92beb278&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/zonal_stat_areas.png"><img alt="../../_images/zonal_stat_areas.png" src="../../_images/zonal_stat_areas.png" style="width: 450px;" /></a>
@@ -340,7 +342,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Henrikki Tenkanen.
-      Last updated on Jan 16, 2018.
+      Last updated on Jan 17, 2018.
 
     </p>
   </div>

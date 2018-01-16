@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; Intro to Python GIS  documentation</title>
+  <title>Masking / clipping raster &mdash; Intro to Python GIS  documentation</title>
   
 
   
@@ -47,7 +47,7 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="Intro to Python GIS  documentation" href="../../index.html"/>
-        <link rel="next" title="Creating a raster mosaic" href="raster-mosaic.html"/>
+        <link rel="next" title="Raster calculations" href="raster-calculations.html"/>
         <link rel="prev" title="Visualizing raster layers" href="plotting-raster.html"/>
     <link href="../../_static/geo-python.css" rel="stylesheet" type="text/css">
      
@@ -156,11 +156,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../L5/ex-5.html">Exercise 5</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Lesson 6</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="download-data.html">Automatize data download</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reading-raster.html">Reading raster files with Rasterio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting-raster.html">Visualizing raster layers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Masking / clipping raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster-calculations.html">Raster calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster-mosaic.html">Creating a raster mosaic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zonal-statistics.html">Zonal statistics</a></li>
 </ul>
@@ -207,7 +209,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Masking / clipping raster</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -228,7 +230,154 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <div class="section" id="masking-clipping-raster">
+<h1>Masking / clipping raster<a class="headerlink" href="#masking-clipping-raster" title="Permalink to this headline">¶</a></h1>
+<p>One common task in raster processing is to clip raster files based on a Polygon.
+The following example shows how to clip a large raster based on a bounding box around Helsinki Region.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show_hist</span>
+
+<span class="gp">In [4]: </span><span class="kn">from</span> <span class="nn">rasterio.mask</span> <span class="kn">import</span> <span class="n">mask</span>
+
+<span class="gp">In [5]: </span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+
+<span class="gp">In [6]: </span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
+
+<span class="gp">In [7]: </span><span class="kn">from</span> <span class="nn">fiona.crs</span> <span class="kn">import</span> <span class="n">from_epsg</span>
+
+<span class="gp">In [8]: </span><span class="kn">import</span> <span class="nn">pycrs</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Specify input and output filepaths</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Filepaths</span>
+<span class="gp">In [9]: </span><span class="n">fp</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\CSC\Data\p188r018_7t20020529_z34__LV-FIN.tif&quot;</span>
+
+<span class="gp">In [10]: </span><span class="n">out_tif</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\CSC\Data\Helsinki_masked_p188r018_7t20020529_z34__LV-FIN.tif&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Open the raster in read mode</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Plot the data</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">show</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">)</span>
+<span class="gh">Out[12]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c927d76d8&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/large_raster.png"><img alt="../../_images/large_raster.png" src="../../_images/large_raster.png" style="width: 450px;" /></a>
+<p>Okey, as you can see, we have a huge raster file where we can see the coastlines of Finland and Estonia. What we want to do next is to create a bounding box around Helsinki region and clip the raster based on that.</p>
+<ul class="simple">
+<li>Next, we need to create a bounding box with Shapely.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># WGS84 coordinates</span>
+<span class="gp">In [13]: </span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span> <span class="o">=</span> <span class="mf">24.60</span><span class="p">,</span> <span class="mf">60.00</span>
+
+<span class="gp">In [14]: </span><span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="mf">25.22</span><span class="p">,</span> <span class="mf">60.35</span>
+
+<span class="gp">In [15]: </span><span class="n">bbox</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Insert the bbox into a GeoDataFrame</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">geo</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">({</span><span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="n">bbox</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Re-project into the same coordinate system as the raster data</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">geo</span> <span class="o">=</span> <span class="n">geo</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Next we need to get the coordinates of the geometry in such a format that rasterio wants them. This can be conducted easily with following function</li>
+</ul>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getFeatures</span><span class="p">(</span><span class="n">gdf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function to parse features from GeoDataFrame in such a manner that rasterio wants them&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">to_json</span><span class="p">())[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;geometry&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Get the geometry coordinates by using the function.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">coords</span> <span class="o">=</span> <span class="n">getFeatures</span><span class="p">(</span><span class="n">geo</span><span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="k">print</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<span class="go">[{&#39;type&#39;: &#39;Polygon&#39;, &#39;coordinates&#39;: [[[735275.3533476054, 6658919.843253607], [732783.5561207401, 6697846.086795722], [698608.1329965619, 6695816.080575279], [700733.5832412266, 6656875.248540204], [735275.3533476054, 6658919.843253607]]]}]</span>
+</pre></div>
+</div>
+<p>Okey, so rasterio wants to have the coordinates of the Polygon in this kind of format.</p>
+<ul class="simple">
+<li>Now we are ready to clip the raster with the polygon using the <code class="docutils literal"><span class="pre">coords</span></code> variable that we just created. Clipping the raster
+can be done easily with the <code class="docutils literal"><span class="pre">mask</span></code> function that we imported in the beginning from <code class="docutils literal"><span class="pre">rasterio</span></code>, and specifying <code class="docutils literal"><span class="pre">clip=True</span></code>.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">out_img</span><span class="p">,</span> <span class="n">out_transform</span> <span class="o">=</span> <span class="n">mask</span><span class="p">(</span><span class="n">raster</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">shapes</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">crop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Next, we need to modify the metadata. Let&#8217;s start by copying the metadata from the original data file.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Copy the metadata</span>
+<span class="gp">In [21]: </span><span class="n">out_meta</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="gp">In [22]: </span><span class="k">print</span><span class="p">(</span><span class="n">out_meta</span><span class="p">)</span>
+<span class="go">{&#39;driver&#39;: &#39;GTiff&#39;, &#39;dtype&#39;: &#39;uint8&#39;, &#39;nodata&#39;: None, &#39;width&#39;: 8877, &#39;height&#39;: 8106, &#39;count&#39;: 7, &#39;crs&#39;: CRS({&#39;init&#39;: &#39;epsg:32634&#39;}), &#39;transform&#39;: (600466.5, 28.5, 0.0, 6784966.5, 0.0, -28.5), &#39;affine&#39;: Affine(28.5, 0.0, 600466.5,</span>
+<span class="go">       0.0, -28.5, 6784966.5)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Next we need to parse the EPSG value from the CRS so that we can create a <code class="docutils literal"><span class="pre">Proj4</span></code> string using <code class="docutils literal"><span class="pre">PyCRS</span></code> library (to ensure that the projection information is saved correctly).</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Parse EPSG code</span>
+<span class="gp">In [23]: </span><span class="n">epsg_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;init&#39;</span><span class="p">][</span><span class="mi">5</span><span class="p">:])</span>
+
+<span class="gp">In [24]: </span><span class="k">print</span><span class="p">(</span><span class="n">epsg_code</span><span class="p">)</span>
+<span class="go">32634</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now we need to update the metadata with new dimensions, transform (affine) and CRS (as Proj4 text)</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">out_meta</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;driver&quot;</span><span class="p">:</span> <span class="s2">&quot;GTiff&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">out_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">out_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="n">out_transform</span><span class="p">,</span>
+<span class="gp">   ....: </span>                 <span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="n">pycrs</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">from_epsg_code</span><span class="p">(</span><span class="n">epsg_code</span><span class="p">)</span><span class="o">.</span><span class="n">to_proj4</span><span class="p">()}</span>
+<span class="gp">   ....: </span>                         <span class="p">)</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Finally, we can save the clipped raster to disk with following command.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_tif</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">out_meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">out_img</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Let&#8217;s still check that the result is correct by plotting our new clipped raster.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">clipped</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_tif</span><span class="p">)</span>
+
+<span class="gp">In [28]: </span><span class="n">show</span><span class="p">((</span><span class="n">clipped</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">)</span>
+<span class="gh">Out[28]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c994f0a90&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/raster_big_clipped.png"><img alt="../../_images/raster_big_clipped.png" src="../../_images/raster_big_clipped.png" style="width: 450px;" /></a>
+<p>Great, it worked! This is how you can easily clip (<em>mask</em>) raster files with rasterio.</p>
+</div>
+
 
            </div>
            <div class="articleComments">
@@ -239,7 +388,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="raster-mosaic.html" class="btn btn-neutral float-right" title="Creating a raster mosaic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="raster-calculations.html" class="btn btn-neutral float-right" title="Raster calculations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="plotting-raster.html" class="btn btn-neutral" title="Visualizing raster layers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -252,7 +401,7 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Henrikki Tenkanen.
-      Last updated on Jan 16, 2018.
+      Last updated on Jan 17, 2018.
 
     </p>
   </div>

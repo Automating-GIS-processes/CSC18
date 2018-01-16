@@ -47,7 +47,7 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="Intro to Python GIS  documentation" href="../../index.html"/>
-        <link rel="next" title="&lt;no title&gt;" href="clipping-raster.html"/>
+        <link rel="next" title="Masking / clipping raster" href="clipping-raster.html"/>
         <link rel="prev" title="Reading raster files with Rasterio" href="reading-raster.html"/>
     <link href="../../_static/geo-python.css" rel="stylesheet" type="text/css">
      
@@ -166,6 +166,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#false-color-composite">False color composite</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="clipping-raster.html">Masking / clipping raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster-calculations.html">Raster calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster-mosaic.html">Creating a raster mosaic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zonal-statistics.html">Zonal statistics</a></li>
 </ul>
@@ -248,19 +250,19 @@
 <span class="gp">In [4]: </span><span class="n">raster</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
 
 <span class="gp">In [5]: </span><span class="n">show</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
-<span class="gh">Out[5]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd4e952358&gt;</span>
+<span class="gh">Out[5]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c9941ef60&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/raster_image.png"><img alt="../../_images/raster_image.png" src="../../_images/raster_image.png" style="width: 600px;" /></a>
 <p>You can also plot different individual channels.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">)</span>
-<span class="gh">Out[6]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd45f71f28&gt;</span>
+<span class="gh">Out[6]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c9953e438&gt;</span>
 
 <span class="gp">In [7]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">)</span>
-<span class="gh">Out[7]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd45f71f28&gt;</span>
+<span class="gh">Out[7]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c9953e438&gt;</span>
 
 <span class="gp">In [8]: </span><span class="n">show</span><span class="p">((</span><span class="n">raster</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
-<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd45f71f28&gt;</span>
+<span class="gh">Out[8]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x20c9953e438&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/raster_band_red.png"><img alt="../../_images/raster_band_red.png" class="align-left" src="../../_images/raster_band_red.png" style="width: 220px;" /></a>
@@ -302,7 +304,7 @@ Luckily that is really easy to do with rasterio by using the <code class="docuti
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="clipping-raster.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="clipping-raster.html" class="btn btn-neutral float-right" title="Masking / clipping raster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="reading-raster.html" class="btn btn-neutral" title="Reading raster files with Rasterio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -315,7 +317,7 @@ Luckily that is really easy to do with rasterio by using the <code class="docuti
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Henrikki Tenkanen.
-      Last updated on Jan 16, 2018.
+      Last updated on Jan 17, 2018.
 
     </p>
   </div>

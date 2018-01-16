@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-88382509-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Raster calculations &mdash; Intro to Python GIS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Intro to Python GIS  documentation" href="../../index.html"/>
+        <link rel="next" title="Creating a raster mosaic" href="raster-mosaic.html"/>
+        <link rel="prev" title="Masking / clipping raster" href="clipping-raster.html"/>
+    <link href="../../_static/geo-python.css" rel="stylesheet" type="text/css">
+     
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Intro to Python GIS
+          
+
+          
+            
+            <img src="../../_static/logo_small.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2018
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Course information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/course-info.html">General info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/who-are-you.html">Who are you?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/Installing_Anacondas_GIS.html">Installing Python + GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../course-info/License-terms.html">License and terms of usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 1</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Intro-Python-GIS.html">Introduction to Python GIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/overview.html">Lesson overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/Geometric-Objects.html">Geometric Objects - Spatial Data Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L1/ex-1.html">Exercise 1</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 2</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L2/overview.html">Lesson 2 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/geopandas-basics.html">Introduction to Geopandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/projections.html">Map projections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/ex-2.html">Exercise 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L2/exercise-2-hints.html">Exercise 2 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 3</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L3/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/geocoding.html">Geocoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/retrieve-osm-data.html">Retrieving OpenStreetMap data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/reclassify.html">Data reclassification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L3/ex-3.html">Exercise 3</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 4</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L4/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/point-in-polygon.html">Point in Polygon &amp; Intersect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/spatial-join.html">Spatial join</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/nearest-neighbour.html">Nearest Neighbour Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/ex-4.html">Exercise 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L4/exercise-4-hints.html">Exercise 4 hints</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 5</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../L5/overview.html">Lesson 5 Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/static-maps.html">Static maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/interactive-map-bokeh.html">Interactive maps with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/advanced-bokeh.html">Advanced plotting with Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/share-on-github.html">Sharing interactive plots on GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../L5/ex-5.html">Exercise 5</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lesson 6</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download-data.html">Automatize data download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading-raster.html">Reading raster files with Rasterio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting-raster.html">Visualizing raster layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clipping-raster.html">Masking / clipping raster</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Raster calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster-mosaic.html">Creating a raster mosaic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zonal-statistics.html">Zonal statistics</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Intro to Python GIS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Raster calculations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Automating-GIS-processes/CSC18/blob/master/source/lessons/L6/raster-calculations.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="raster-calculations">
+<h1>Raster calculations<a class="headerlink" href="#raster-calculations" title="Permalink to this headline">¶</a></h1>
+<p>Conducting calculations between bands or raster is another common GIS task. Here, we will be calculating <code class="docutils literal"><span class="pre">NDVI</span></code> (Normalized difference vegetation index)
+based on the Landsat dataset that we have downloaded from Helsinki region. Conducting calculations with rasterio
+is fairly straightforward if the extent etc. matches because the values of the rasters are stored as <code class="docutils literal"><span class="pre">numpy</span></code> arrays
+(similar to the columns stored in Geo/Pandas, i.e. <code class="docutils literal"><span class="pre">Series</span></code>).</p>
+<ul class="simple">
+<li>Let&#8217;s start by importing the necessary modules <code class="docutils literal"><span class="pre">rasterio</span></code> and <code class="docutils literal"><span class="pre">numpy</span></code></li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">rasterio</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="gp">In [3]: </span><span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Let&#8217;s read the file that we masked for Helsinki Region</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="go"># Filepath</span>
+<span class="gp">In [4]: </span><span class="n">fp</span> <span class="o">=</span> <span class="s2">r&quot;C:\HY-DATA\HENTENKA\CSC\Data\Helsinki_masked_p188r018_7t20020529_z34__LV-FIN.tif&quot;</span>
+
+<span class="gp">In [5]: </span><span class="n">raster</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For calculating the NDVI (Normalized difference vegetation index) you need two bands: band-4 which is the Red channel and band-5 which is the Near Infrared (NIR)</p>
+<ul class="simple">
+<li>Let&#8217;s read those bands from our raster source</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">red</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">nir</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [8]: </span><span class="n">red</span>
+<span class="gh">Out[8]: </span><span class="go"></span>
+<span class="go">array([[0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       ..., </span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0]], dtype=uint8)</span>
+
+<span class="gp">In [9]: </span><span class="n">nir</span>
+<span class="go">                                                                                                                                                                                                                                    Out[9]: </span>
+<span class="go">array([[0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       ..., </span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0],</span>
+<span class="go">       [0, 0, 0, ..., 0, 0, 0]], dtype=uint8)</span>
+
+<span class="gp">In [10]: </span><span class="nb">type</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Out[10]: numpy.ndarray</span>
+
+<span class="gp">In [11]: </span><span class="n">show</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Out[11]: &lt;matplotlib.axes._subplots.AxesSubplot at 0x20c905720f0&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/nir_channel.png"><img alt="../../_images/nir_channel.png" src="../../_images/nir_channel.png" style="width: 450px;" /></a>
+<p>As we can see the values are stored as numpy.ndarray.</p>
+<ul class="simple">
+<li>Let&#8217;s change the data type from uint8 to float so that we can have floating point numbers stored in our arrays.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">red</span> <span class="o">=</span> <span class="n">red</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="gp">In [13]: </span><span class="n">nir</span> <span class="o">=</span> <span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="n">nir</span>
+<span class="gh">Out[14]: </span><span class="go"></span>
+<span class="go">array([[ 0.,  0.,  0., ...,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  0.,  0.],</span>
+<span class="go">       ..., </span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  0.,  0.],</span>
+<span class="go">       [ 0.,  0.,  0., ...,  0.,  0.,  0.]])</span>
+</pre></div>
+</div>
+<p>Now we can see that the numbers changed to decimal numbers (there is a dot after the zero).</p>
+<p>Next we need to tweak the behaviour of numpy a little bit. By default numpy will complain about dividing with zero values.
+We need to change that behaviour because we have a lot of 0 values in our data.</p>
+<ul class="simple">
+<li>Allow 0 division in numpy</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="gh">Out[15]: </span><span class="go">{&#39;divide&#39;: &#39;warn&#39;, &#39;invalid&#39;: &#39;warn&#39;, &#39;over&#39;: &#39;warn&#39;, &#39;under&#39;: &#39;ignore&#39;}</span>
+</pre></div>
+</div>
+<p>Now we need to initialize the ndvi with zeros before we do the calculations (this is numpy specific trick)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now we are ready to calculate the NDVI. First, we can create a filter where we calculate the values on such pixels that have a value larger than 0.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">check</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span> <span class="p">(</span> <span class="n">red</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nir</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Now we can apply that filter and calculate the ndvi index.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span> <span class="p">(</span> <span class="n">check</span><span class="p">,</span>  <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">red</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="n">nir</span> <span class="o">+</span> <span class="n">red</span> <span class="p">),</span> <span class="o">-</span><span class="mi">999</span> <span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="n">ndvi</span>
+<span class="gh">Out[19]: </span><span class="go"></span>
+<span class="go">array([[-999., -999., -999., ..., -999., -999., -999.],</span>
+<span class="go">       [-999., -999., -999., ..., -999., -999., -999.],</span>
+<span class="go">       [-999., -999., -999., ..., -999., -999., -999.],</span>
+<span class="go">       ..., </span>
+<span class="go">       [-999., -999., -999., ..., -999., -999., -999.],</span>
+<span class="go">       [-999., -999., -999., ..., -999., -999., -999.],</span>
+<span class="go">       [-999., -999., -999., ..., -999., -999., -999.]])</span>
+
+<span class="gp">In [20]: </span><span class="n">ndvi</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                        Out[20]: -108.16964389074909</span>
+
+<span class="gp">In [21]: </span><span class="n">ndvi</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                     Out[21]: 310.4604815144337</span>
+
+<span class="gp">In [22]: </span><span class="n">show</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;summer&#39;</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                Out[22]: &lt;matplotlib.axes._subplots.AxesSubplot at 0x20c99ecd780&gt;</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ndvi.png"><img alt="../../_images/ndvi.png" src="../../_images/ndvi.png" style="width: 450px;" /></a>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="raster-mosaic.html" class="btn btn-neutral float-right" title="Creating a raster mosaic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="clipping-raster.html" class="btn btn-neutral" title="Masking / clipping raster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Henrikki Tenkanen.
+      Last updated on Jan 17, 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    <p> <br/> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /> </a></p>
+     
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
