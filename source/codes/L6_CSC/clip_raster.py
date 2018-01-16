@@ -58,7 +58,7 @@ geo = gpd.GeoDataFrame({'geometry': bbox}, index=[0], crs=from_epsg(4326))
 
 # Re-project into the same coordinate system as the raster data
 geo = geo.to_crs(crs=data.crs.data)
-shp_out = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\Landsat\Mask_polygon.shp"
+#shp_out = r"C:\HY-DATA\HENTENKA\KOODIT\Opetus\Automating-GIS-processes\Data\Landsat\Mask_polygon.shp"
 #geo.to_file(shp_out)
 
 # Get the geometry coordinates

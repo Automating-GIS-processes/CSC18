@@ -18,11 +18,12 @@ The following example shows how to clip a large raster based on a bounding box a
 
 - Specify input and output filepaths
 
-.. ipython:: pyhon
+.. ipython:: python
 
     # Filepaths
     fp = r"C:\HY-DATA\HENTENKA\CSC\Data\p188r018_7t20020529_z34__LV-FIN.tif"
     out_tif = r"C:\HY-DATA\HENTENKA\CSC\Data\Helsinki_masked_p188r018_7t20020529_z34__LV-FIN.tif"
+
 
 - Open the raster in read mode
 
@@ -36,10 +37,11 @@ The following example shows how to clip a large raster based on a bounding box a
 .. ipython:: python
 
     @savefig large_raster.png width=450px
-    show(data)
+    show((data, 4), cmap='terrain')
 
+Okey, as you can see, we have a huge raster file where we can see the coastlines of Finland and Estonia. What we want to do next is to create a bounding box around Helsinki region and clip the raster based on that.
 
-- Next, we need to create a bounding box with Shapely
+- Next, we need to create a bounding box with Shapely.
 
 .. ipython:: python
 
@@ -132,7 +134,8 @@ Okey, so rasterio wants to have the coordinates of the Polygon in this kind of f
 .. ipython:: python
 
     clipped = rasterio.open(out_tif)
-    show((clipped, 5))
+    @savefig raster_big_clipped.png width=450px
+    show((clipped, 5), cmap='terrain')
 
 Great, it worked! This is how you can easily clip (*mask*) raster files with rasterio.
 
