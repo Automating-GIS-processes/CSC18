@@ -35,6 +35,9 @@ Let's have a closer look at the properties of the file:
     # Projection
     raster.crs
 
+    # Affine transform (how raster is scaled, rotated, skewed, and/or translated)
+    raster.transform
+
     # Dimensions
     raster.width
     raster.height
