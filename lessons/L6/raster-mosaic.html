@@ -333,7 +333,7 @@ in based on search criteria.</p>
 <li>Let&#8217;s check that it looks okey.</li>
 </ul>
 <div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">show</span><span class="p">(</span><span class="n">mosaic</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">)</span>
-<span class="gh">Out[17]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x216cc6ab550&gt;</span>
+<span class="gh">Out[17]: </span><span class="go">&lt;matplotlib.axes._subplots.AxesSubplot at 0x1bd4dffa208&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/raster_mosaic.png"><img alt="../../_images/raster_mosaic.png" src="../../_images/raster_mosaic.png" style="width: 400px;" /></a>
@@ -362,23 +362,6 @@ in based on search criteria.</p>
 <span class="gp">In [20]: </span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_fp</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">out_meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest</span><span class="p">:</span>
 <span class="gp">   ....: </span>    <span class="n">dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mosaic</span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">PermissionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-20-371f4df0447b&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">out_fp</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">out_meta</span><span class="p">)</span> <span class="k">as</span> <span class="n">dest</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">mosaic</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-
-<span class="nn">C:\ProgramData\Anaconda3\lib\site-packages\rasterio\__init__.py</span> in <span class="ni">open</span><span class="nt">(path, mode, driver, width, height, count, crs, transform, dtype, nodata, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>             <span class="s2">&quot;mode string must be one of &#39;r&#39;, &#39;r+&#39;, or &#39;w&#39;, not </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mode</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">193</span>     <span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="k">return</span> <span class="n">s</span>
-<span class="g g-Whitespace">    </span><span class="mi">195</span> 
-
-<span class="nn">rasterio/_io.pyx</span> in <span class="ni">rasterio._io.RasterUpdater.start (rasterio/_io.c:18853)</span><span class="nt">()</span>
-
-<span class="ne">PermissionError</span>: [WinError 32] The process cannot access the file because it is being used by another process: &#39;C:\\HY-DATA\\HENTENKA\\KOODIT\\Opetus\\Automating-GIS-processes\\Data\\CSC_Lesson6\\Helsinki_DEM_2x2m_Mosaic.tif&#39;
 </pre></div>
 </div>
 <p>That&#8217;s it! Easy!</p>
