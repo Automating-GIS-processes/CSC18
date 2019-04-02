@@ -243,18 +243,22 @@ Polygon
 -------
 
 -  Creating a Polygon -object continues the same logic of how Point and
-   LineString were created but Polygon object only accepts
-   coordinate-tuples as input. Polygon needs at least three
-   coordinate-tuples:
+   LineString were created. Polygon objects accept a list of coordinate tuples
+   as constructor arguments, but can also use other Shapely objects that
+   encapsulate coordinates, like a list of Point, or a LineString.
+
+   Polygon needs at least three coordinates :
 
 .. ipython:: python
 
      # Create a Polygon from the coordinates
      poly = Polygon([(2.2, 4.2), (7.2, -25.1), (9.26, -2.456)])
 
-     # We can also use our previously created Point objects (same outcome)
-     # --> notice that Polygon object requires x,y coordinates as input
-     poly2 = Polygon([[p.x, p.y] for p in [point1, point2, point3]])
+     # We can also use our previously created Point objects
+     poly2 = Polygon([point1, point2, point3])
+     
+     # Or we can use the LineString we made from them
+     poly3 = Polygon(line)
      
      # Geometry type can be accessed as a String
      poly_type = poly.geom_type
@@ -265,6 +269,7 @@ Polygon
      # Let's see how our Polygon looks like
      print(poly)
      print(poly2)
+     print(poly3)
      print("Geometry type as text:", poly_type)
      print("Geometry how Python shows it:", poly_type2)
 
