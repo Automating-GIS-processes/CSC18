@@ -5,7 +5,7 @@ Geometric Objects - Spatial Data Model
 **Sources:**
 
 These materials are partly based on `Shapely
--documentation <http://toblerity.org/shapely/manual.html>`__ and `Westra
+-documentation <https://shapely.readthedocs.io>`__ and `Westra
 E. (2013), Chapter
 3 <https://www.packtpub.com/application-development/python-geospatial-development-second-edition>`__.
 
@@ -15,12 +15,12 @@ Overview of geometric objects and Shapely -module
 .. figure:: http://www.helsinki.fi/science/accessibility/maintenance/Kuvia/SpatialDataModel.PNG
 
 *Fundamental geometric objects that can be used in Python with*
-`Shapely <http://toblerity.org/shapely/manual.html>`_ *module*
+`Shapely <https://shapely.readthedocs.io>`_ *module*
 
 The most fundamental geometric objects are **Points**, **Lines** and
 **Polygons** which are the basic ingredients when working with spatial
 data in vector format. Python has a specific module called
-`Shapely <http://toblerity.org/shapely/manual.html#>`__ that can be
+`Shapely <https://shapely.readthedocs.io>`__ that can be
 used to create and work with *Geometric Objects*. There are many useful
 functionalities that you can do with Shapely such as:
 
