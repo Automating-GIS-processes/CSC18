@@ -62,7 +62,7 @@ Quite often you have a situtation when you want to summarize raster datasets bas
 .. ipython:: python
 
     array = dem.read(1)
-    affine = dem.affine
+    affine = dem.transform
 
 - Now we can calculate the zonal statistics by using the function ``zonal_stats``.
 
