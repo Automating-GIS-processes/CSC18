@@ -70,7 +70,7 @@ Great! Now we can see that our graph contains the nodes (blue circles) and the e
 
 It is also possible to retrieve other types of OSM data features with osmnx.
 
-- Let's download the buildings with ``footprints_from_place()`` function from OSM's `footprints` module and plot them on top of our street network in Kamppi. Let's also plot the Polygon that represents the area of Kamppi,
+- Let's download the buildings with ``footprints_from_place()`` function from OSM's ``footprints`` module and plot them on top of our street network in Kamppi. Let's also plot the Polygon that represents the area of Kamppi,
 Helsinki that can be retrieved with ``gdf_from_place`` function.
 
 .. ipython:: python
