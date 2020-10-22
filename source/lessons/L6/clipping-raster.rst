@@ -119,7 +119,7 @@ Okey, so rasterio wants to have the coordinates of the Polygon in this kind of f
                      "height": out_img.shape[1],
                      "width": out_img.shape[2],
                      "transform": out_transform,
-                     "crs": pycrs.parser.from_epsg_code(epsg_code).to_proj4()}
+                     "crs": pycrs.parse.from_epsg_code(epsg_code).to_proj4()}
                              )
 
 - Finally, we can save the clipped raster to disk with following command.
